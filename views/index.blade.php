@@ -11,11 +11,11 @@
     </li>
 </ul>
 
-<div class="tab-content" class="tab-pane">
-    <div id="vms" class="tab-pane">
+<div class="tab-content">
+    <div id="vms" class="tab-pane active">
         @include('vms.main')
     </div>
-    <div id="vdi" class="tab-pane active">
+    <div id="vdi" class="tab-pane">
         @include('vdi.main')
     </div>
 </div>

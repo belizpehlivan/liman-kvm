@@ -153,12 +153,12 @@ class VMController
     }
 
     function createVM(){
-        Command::runSudo("sudo virt-install --name @{:title} --description 'deneme' --ram=750 --vcpus=2 --os-type=Linux --os-variant=debian10 --disk path=/var/lib/libvirt/images/@{:title}.qcow2,bus=virtio,size=8 --graphics spice,listen=0.0.0.0 --video qxl --channel spicevmc --cdrom @{:location} --network bridge:br0  --noautoconsole",[
+        $output = Command::runSudo("virt-install --name @{:title} --description 'deneme' --ram=750 --vcpus=2 --os-type=Linux --os-variant=debian10 --disk path=/var/lib/libvirt/images/@{:title}.qcow2,bus=virtio,size=8 --graphics spice,listen=0.0.0.0 --video qxl --channel spicevmc --cdrom @{:location} --network bridge:br0  --noautoconsole",[
             "title" => request("title"),
             "location" => request("location")
 
         ]);
 
-        return respond("selam",200);
+        return respond($output,200);
     }
 }

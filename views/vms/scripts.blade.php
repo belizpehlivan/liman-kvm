@@ -102,11 +102,13 @@
         data.append("location", location);
 
         request(API('create_vm'), data, function(response) {
+
             $('#createVMModal').modal("hide");
             getVM();
             showSwal(message, 'success', 3000);
             }, function(response) {
                 let error = JSON.parse(response);
+                console.log(error.message);
                 showSwal(error.message, 'error', 3000);
             });
     }   
