@@ -1,6 +1,12 @@
 {
     "Sanal Makineler": "Virtual Machines",
     "VDI Ekle": "Assign VDI",
-    "Yükleniyor...": "Loading..."
+    "Yükleniyor...": "Loading...",
+    "VM İsmi": "VM Name",
+    "Kullanıcı Adı": "Username",
+    "Yeni VDI": "New VDI",
+    "Düzenle": "Edit",
+    "Sil": "Delete"
+
     
 }

@@ -2,8 +2,15 @@
     "name": "LimanKVM",
     "publisher": "Administrator",
     "version": "0.0.1",
-    "version_code": 2,
-    "database": [],
+    "version_code": 4,
+    "database": [
+        {
+            "variable": "ip_kvmDb",
+            "type": "text",
+            "name": "ip_kvmDb",
+            "required": false
+        }
+    ],
     "widgets": [],
     "language": "php",
     "status": 0,
