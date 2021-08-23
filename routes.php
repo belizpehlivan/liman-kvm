@@ -15,6 +15,9 @@ return [
     "assign_vdi" => "ApiController@assignVDI",
     "list_vdi" => "ApiController@listVDI",
     "delete_vdi" => "ApiController@deleteVDI",
-    "edit_vdi" => "ApiController@editVDI"
+    "edit_vdi" => "ApiController@editVDI",
+
+    "check_configuration" => "VdiController@checkConfiguration",
+    "edit_configuration_file" => "VdiController@editConfigurationFile"
 
 ];
