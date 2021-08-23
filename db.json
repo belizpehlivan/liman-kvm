@@ -1,0 +1,25 @@
+{
+    "name": "LimanKVM",
+    "publisher": "Administrator",
+    "version": "0.0.1",
+    "version_code": 4,
+    "database": [
+        {
+            "variable": "ip_kvmDb",
+            "type": "text",
+            "name": "ip_kvmDb",
+            "required": false
+        }
+    ],
+    "widgets": [],
+    "language": "php",
+    "status": 0,
+    "service": null,
+    "supportedLiman": "1.8-RC1",
+    "support": "administrator@liman.dev",
+    "icon": "fas fa-bold",
+    "require_key": "false",
+    "verification": null,
+    "dependencies": null,
+    "sslPorts": null
+}
