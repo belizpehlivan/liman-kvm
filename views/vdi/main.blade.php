@@ -1,7 +1,7 @@
 @include('modal-button', [
                     "class" => "btn btn-success mb-2",
                     "target_id" => "assignVdiModal",
-                    "text" => "Yeni VDI"
+                    "text" => "VDI Ata"             
         ])
 
 @component('modal-component',[
@@ -11,15 +11,16 @@
                 [
                     "class" => "btn-success",
                     "onclick" => "assignVdi()",
-                    "text" => "Oluştur"
-                ]    
+                    "text" => "Kaydet"
+                ]
             ]) 
-            
             <form>
                 <div class="form-group">
                     <label for="name">{{__('VM İsmi')}}</label>
-                    <input class="form-control" id="name" >
-                </div>        
+                    <select id="select2"></select>
+                    
+                </div>       
+              
                 <div class="form-group">
                     <label for="username">{{__('Kullanıcı Adı')}}</label>
                     <input class="form-control" id="username" >

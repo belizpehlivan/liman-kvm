@@ -5,8 +5,7 @@ use GuzzleHttp\Client;
 class ApiController{
 
     function listVDI(){
-        $name = request('name');
-        $username = request('username');
+    
         $ip = request('ip');
         $port = "5000";
         $url = "http://" . $ip . ":" . $port;

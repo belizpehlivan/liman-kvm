@@ -7,6 +7,30 @@ use Liman\Toolkit\Shell\Command;
 
 class VMController
 {
+
+    function getVmData(){
+        $output = Command::runSudo('virsh list --all');
+        $lines = explode("\n",$output);
+        $count = count($lines);
+        unset($lines[0]); 
+        unset($lines[1]);
+
+        for($i=2; $i<$count; $i++)
+        {       
+            $lines[$i] = preg_replace("/ {2,}/", " ",  $lines[$i]);
+            $lines[$i] = explode(" ",  $lines[$i], 4);
+        }
+        $data = [];
+        $i = 0;
+        foreach($lines as $line){
+            $data[] = [
+                "id" => $i,
+                "text" => $line[2],
+            ];
+            $i++;
+        }
+        return respond($data, 200);
+    }
     function getVMS(){
         $output = Command::runSudo('virsh list --all');
         $lines = explode("\n",$output);

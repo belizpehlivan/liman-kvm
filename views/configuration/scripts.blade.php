@@ -8,18 +8,15 @@
 
             if(message == "not exists"){
                 info = '<div class="alert alert-danger" role="alert">{{__("Konfigürasyon Dosyası Mevcut Değil ! Oluşturmak için butona tıklayınız.")}}</div>' 
-                +'<button class="btn btn-danger mb-2" id="editConfBtn" style="float:left;margin-left:10px;visibility:hidden;"></button>' 
-                + '</br></br><pre id="editConf"></pre>';
+                +'<button class="btn btn-danger mb-2" id="editConfBtn" style="float:left;margin-left:10px;visibility:hidden;"></button>';
                 $('#configuration').append(info);
-                let updateButton = document.getElementById("editConfBtn");
-                updateButton.onclick = function() {editConfigurationFile();};
-                updateButton.innerText = '{{__("Oluştur")}}';
-                updateButton.style.visibility = "visible";
+                let confButton = document.getElementById("editConfBtn");
+                confButton.onclick = function() {editConfigurationFile();};
+                confButton.innerText = '{{__("Oluştur")}}';
+                confButton.style.visibility = "visible";
             }
-            else {
-               // $('#confAlert').html("Konfigürasyon Dosyasının İçeriğini Aşağıdan Görebilirsiniz");
-                //konfigürasyon dosyasını basacak script fonksyionu çağır
-                info = '<div class="alert alert-success" role="alert" id="confAlert">Konfigürasyon Dosyasının İçeriğini Aşağıdan Görebilirsiniz</div>' +'<div class="card">'+'<div class="card-body">'+'<pre id="configurationFile"></pre>'+'</div>'+'</div>';
+            else {   
+                info = '<div class="alert alert-success" role="alert" id="confAlert">Konfigürasyon Dosyasının İçeriğini Aşağıdan Görebilirsiniz</div>' +'<div class="card">'+'<div class="card-body">'+'<pre id="configurationFile"></pre>'+'</div>'+'</div>';               
                 $('#configuration').html(info);
                 $('#configurationFile').html(message);
             }

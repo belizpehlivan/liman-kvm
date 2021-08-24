@@ -1,10 +1,28 @@
 <script>
+ $(document).ready(function(){
+        //console.log("hello");
+        getVmData();
+       
+    });
+    
+    function getVmData(){
+        var form = new FormData();
+        request(API('get_vm_data'), form, function(response) {
+            response = JSON.parse(response);
+            //console.log(response["message"]);
+            $("#select2").select2({
+                data: response["message"]
+            })
+            return;
+        }, function(response) {
+            let error = JSON.parse(response);
+            Swal.close();
+            showSwal(error.message, 'error', 3000);
+        });
+    }
     function listVdi(){
 
         showSwal('{{__("Yükleniyor...")}}','info');
-
-        let name = document.getElementById("name").value;
-        let username = document.getElementById("username").value;
         let ip = "{{extensionDb('ip_kvmDb')}}"
 
         var form = new FormData();
@@ -24,20 +42,22 @@
     }
     function assignVdi(){
 
-        let name = document.getElementById("name").value;
+       // let name = document.getElementById("name").value;
+        let name = $('#select2').select2('data')[0]["text"];
         let username = document.getElementById("username").value;
         let ip = "{{extensionDb('ip_kvmDb')}}"
-        
+
         var form = new FormData();
         form.append("name", name);
         form.append("username", username);
         form.append("ip", ip);
 
         request(API('assign_vdi'), form, function(response) {
-            message = JSON.parse(response)["message"];
-            console.log(message);
-            listVdi();
             $('#assignVdiModal').modal('hide');
+            message = JSON.parse(response)["message"];
+            showSwal(message, 'success', 10000); 
+            listVdi();
+                  
             }, function(response) {
                 let error = JSON.parse(response);
                 showSwal(error.message, 'error', 3000);

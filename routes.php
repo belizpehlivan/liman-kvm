@@ -11,6 +11,7 @@ return [
     "delete_machine" => "VMController@deleteMachine",
     "list_cpu_info" => "VMController@listCpuInfo",
     "create_vm" => "VMController@createVM",
+    "get_vm_data" => "VMController@getVmData",
     
     "assign_vdi" => "ApiController@assignVDI",
     "list_vdi" => "ApiController@listVDI",

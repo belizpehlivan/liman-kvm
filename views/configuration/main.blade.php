@@ -14,7 +14,6 @@
             <div class="form-group">
                 <label for="ldap-host">Ldap Host</label>
                 <input type="text" class="form-control" id="ldap-host">
-                
             </div>
             <div class="form-group">
                 <label for="ldap-basedn">Ldap Basedn</label>

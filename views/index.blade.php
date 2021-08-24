@@ -27,3 +27,9 @@
         @include('vdi.main')
     </div>
 </div>
+
+<script>
+    if (location.hash ==="") {
+        checkConfiguration();
+    }
+</script>
