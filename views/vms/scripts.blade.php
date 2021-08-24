@@ -77,7 +77,7 @@
         form.append("name", name);
 
         request(API('list_cpu_info'), form, function(response) {
-            console.log(response);
+           // console.log(response);
             $("#machineInfoModal").modal('show');
             $('#cpuInfoTable').html(response);//.find('table').DataTable(dataTablePresets('normal'));
             Swal.close();

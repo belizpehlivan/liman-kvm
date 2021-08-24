@@ -19,6 +19,14 @@
                 info = '<div class="alert alert-success" role="alert" id="confAlert">Konfigürasyon Dosyasının İçeriğini Aşağıdan Görebilirsiniz</div>' +'<div class="card">'+'<div class="card-body">'+'<pre id="configurationFile"></pre>'+'</div>'+'</div>';               
                 $('#configuration').html(info);
                 $('#configurationFile').html(message);
+
+                $('#ldaphost').val();
+                $('#ldapbasedn').val();
+                $('#ldapusername').val();
+                $('#ldappassword').val();
+                $('#hostip').val();
+
+                $('#conf-content').css("visibility", "visible");
             }
            
             
@@ -29,6 +37,14 @@
         
     }
 
+    function updateConf(){
+
+        $('#ldaphost').val();
+        $('#ldapbasedn').val();
+        $('#ldapusername').val();
+        $('#ldappassword').val();
+        $('#hostip').val();
+    }
     function editConfigurationFile(){
 
         $('#configurationModal').modal('show');

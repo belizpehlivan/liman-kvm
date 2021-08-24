@@ -5,7 +5,7 @@ namespace App\Controllers;
 use Liman\Toolkit\RemoteTask\TaskManager;
 use Liman\Toolkit\Shell\Command;
 
-class VdiController
+class ConfigurationController
 {
     function checkConfiguration(){
 

@@ -34,5 +34,24 @@
         </form>
 @endcomponent
 
+<form id='conf-content'>
+  <label for="ldaphost">Ldap Host</label>
+  <input class="form-control" type="text" id="ldaphost" name="fav_language" value="">
+  <br>
+  <label for="ldapbasedn">Ldap Basedn</label>
+  <input class="form-control" type="text" id="ldapbasedn" name="fav_language" value="">
+  <br>
+  <label for="ldapusername">Ldap Username</label>
+  <input class="form-control" type="text" id="ldapusername" name="fav_language" value="">
+  <br>
+  <label for="ldappassword">Ldap Password</label>
+  <input class="form-control" type="text" id="ldappassword" name="fav_language" value="">
+  <br>
+  <label for="hostip">Host IP</label>
+  <input class="form-control" type="text" id="hostip" name="fav_language" value="">
+  <br>
+  <input type="submit" onclick="updateConf()" value="Güncelle">
+</form>
+
 
 @include("configuration.scripts")
