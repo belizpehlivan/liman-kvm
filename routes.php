@@ -19,6 +19,7 @@ return [
     "edit_vdi" => "ApiController@editVDI",
 
     "check_configuration" => "ConfigurationController@checkConfiguration",
-    "update_configuration_file" => "ConfigurationController@updateConfigurationFile"
+    "update_configuration_file" => "ConfigurationController@updateConfigurationFile",
+    "check_conf" => "ConfigurationController@checkConf"
 
 ];

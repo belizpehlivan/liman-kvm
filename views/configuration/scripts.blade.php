@@ -46,6 +46,7 @@
 
             request(API('update_configuration_file'), form, function(response) {
                 message = JSON.parse(response)["message"];
+                checkConf();
                 checkConfiguration();
                 }, function(response) {
                     let error = JSON.parse(response);
@@ -58,39 +59,5 @@
         }
   
     }
-
-    /*
-    function editConfigurationFile(){
-
-        $('#configurationModal').modal('show');
-    }
-
-    function saveConfiguration(){
-        let ldap_host = document.getElementById("ldap-host").value;
-        let ldap_basedn = document.getElementById("ldap-basedn").value;
-        let ldap_username = document.getElementById("ldap-username").value;
-        let ldap_password = document.getElementById("ldap-password").value;
-        let host_ip = document.getElementById("host-ip").value;
-
-        var form = new FormData();
-
-        form.append("ldap-host",ldap_host);
-        form.append("ldap-basedn",ldap_basedn);
-        form.append("ldap-username",ldap_username);  
-        form.append("ldap-password",ldap_password);
-        form.append("host-ip",host_ip);
-
-
-        request(API('edit_configuration_file'), form, function(response) {
-            message = JSON.parse(response)["message"];
-            console.log(message);
-            $('#configurationModal').modal('hide');
-            checkConfiguration();
-            }, function(response) {
-                let error = JSON.parse(response);
-                showSwal(error.message, 'error', 3000);
-            });
-    }
-*/
 
 </script>
