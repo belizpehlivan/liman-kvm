@@ -4,12 +4,12 @@
             <i class="fas fa-tasks"></i> {{ __("Konfigürasyon") }}
         </a>
     </li>
-    <li class="nav-item">
+    <li class="nav-item gizli">
         <a class="nav-link" onclick="getVM()" href="#vms" data-toggle="tab">
             <i class="fas fa-tasks"></i> {{ __("Sanal Makineler") }}
         </a>
     </li>
-    <li class="nav-item">
+    <li class="nav-item gizli">
         <a class="nav-link" onclick="listVdi()" href="#vdi" data-toggle="tab">
             <i class="fas fa-desktop"></i> {{ __("VDI") }}
         </a>
@@ -20,10 +20,10 @@
     <div id="configuration" class="tab-pane active">
         @include('configuration.main')
     </div>
-    <div id="vms" class="tab-pane tabItem">
+    <div id="vms" class="tab-pane">
         @include('vms.main')
     </div>
-    <div id="vdi" class="tab-pane tabItem">
+    <div id="vdi" class="tab-pane">
         
         @include('vdi.main')
     </div>
@@ -35,8 +35,9 @@
     }
 
     $(document).ready(function(){
-        var check = checkConf();
-        return check;
+      checkConf();
+      ldapCheck();
+      return;
     });
 
     function checkConf(){
@@ -45,13 +46,37 @@
 
         request(API('check_conf'), form, function(response) {
             response = JSON.parse(response)["message"];
-            if(response == "true")
-                $(".tabItem").css("visibility", "visible");
-            else
-                $(".tabItem").css("visibility", "hidden");  
+            console.log(response);
+            
+            if(response == "false")
+               {
+                $(".gizli").css("display", "none");  
+               }
+               else{
+                $(".gizli").css("display", "block");  
+               }
             }, function(response) {
                     let error = JSON.parse(response);
                     showSwal(error.message, 'error', 3000);
         });
     }
+    function ldapCheck()
+    {
+        var form = new FormData();
+
+        request(API('ldap_check'), form, function(response) {
+            // console.log(response);
+            // response = JSON.parse(response);
+            //console.log(response);
+            console.log(response);
+            response = JSON.parse(response)["message"];
+            console.log("hello" + response);
+
+            }, function(response) {
+                let error = JSON.parse(response);
+                showSwal(error.message, 'error', 3000);
+            });
+            
+    }
+
 </script>

@@ -53,14 +53,17 @@
         form.append("ip", ip);
 
         request(API('assign_vdi'), form, function(response) {
+            console.log(response);
             $('#assignVdiModal').modal('hide');
-            message = JSON.parse(response)["message"];
-            showSwal(message, 'success', 10000); 
-            listVdi();
-                  
+           // message = JSON.parse(response);
+          //  showSwal(message, 'success', 3000); 
+
+            setTimeout(function(){
+                listVdi();
+            }, 3000);
             }, function(response) {
-                let error = JSON.parse(response);
-                showSwal(error.message, 'error', 3000);
+                let error = JSON.parse(response)["message"];
+                showSwal(error, 'error', 3000);
             });
     }
     function deleteVdi(line){
@@ -75,7 +78,11 @@
 
         request(API('delete_vdi'), form, function(response) {
             message = JSON.parse(response)["message"];
-            listVdi()
+            console.log(message);
+            showSwal(message, "success", 3000); 
+            setTimeout(function(){
+                listVdi();
+            }, 3000);
             }, function(response) {
                 let error = JSON.parse(response);
                 showSwal(error.message, 'error', 3000);

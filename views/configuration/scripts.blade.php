@@ -45,7 +45,6 @@
             form.append("hostip",$('#hostip').val());
 
             request(API('update_configuration_file'), form, function(response) {
-                message = JSON.parse(response)["message"];
                 checkConf();
                 checkConfiguration();
                 }, function(response) {

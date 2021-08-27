@@ -139,7 +139,7 @@ class VMController
         Command::runSudo("virsh undefine @{:name}",["name" => request("name")]);
         Command::runSudo("virsh pool-refresh default",["name" => request("name")]);
         Command::runSudo("virsh vol-delete --pool default @{:name}.qcow2",["name" => request("name")]);
-        return respond("dfghfdhjd",200);
+        return respond($output,200);
     }
 
     function listCpuInfo(){
@@ -177,12 +177,16 @@ class VMController
     }
 
     function createVM(){
-        $output = Command::runSudo("virt-install --name @{:title} --description 'deneme' --ram=750 --vcpus=2 --os-type=Linux --os-variant=debian10 --disk path=/var/lib/libvirt/images/@{:title}.qcow2,bus=virtio,size=8 --graphics spice,listen=0.0.0.0 --video qxl --channel spicevmc --cdrom @{:location} --network bridge:br0  --noautoconsole",[
+        $output = Command::runSudo("virt-install --name @{:title} --description 'deneme' --ram=2048 --vcpus=2 --os-type=Linux --os-variant=debian10 --disk path=/var/lib/libvirt/images/@{:title}.qcow2,bus=virtio,size=8 --graphics spice,listen=0.0.0.0 --video qxl --channel spicevmc --cdrom @{:location} --network bridge:br0  --noautoconsole 2>&1",[
             "title" => request("title"),
             "location" => request("location")
 
         ]);
 
-        return respond($output,200);
+        if(str_contains($output, "ERROR")){
+            return respond($output,201);
+        }
+        else 
+            return respond("Sanal makine başarıyla oluşturuldu",200);
     }
 }

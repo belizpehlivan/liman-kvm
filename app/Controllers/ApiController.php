@@ -4,6 +4,30 @@ use GuzzleHttp\Client;
 
 class ApiController{
 
+private $client;
+function __construct(){
+    $this->client = new GuzzleHttp\Client(
+        [
+            'base_uri' => "http://10.154.25.180:5000",
+            'headers' => ['Content-Type' => 'application/json']
+        ]
+    );
+
+}
+   // function ldapCheck($ip, $port) {
+    function ldapCheck(){
+       // $url = "http://" . $ip . ":" . $port;
+        $url = "http://10.154.25.180:5000";
+        $client = new GuzzleHttp\Client(
+            [
+                'base_uri' => $url,
+                'headers' => ['Content-Type' => 'application/json']
+            ]
+        );
+        $response = $client->request('GET', '/testLdap');
+        return $response->getBody()->getContents();
+    }
+
     function listVDI(){
     
         $ip = request('ip');
@@ -56,22 +80,17 @@ class ApiController{
         $port = "5000";
         $url = "http://" . $ip . ":" . $port;
         
-        $client = new GuzzleHttp\Client(
-            [
-                'base_uri' => $url,
-                'headers' => ['Content-Type' => 'application/json']
-            ]
-        );
-
-        $response = $client->request('POST', '/assignVdi', 
-        [  
-            "json"=> [  
-                    "name" => $name,
-                    "username"=> $username
-                    ]
-        ]);
-  
-        return $response->getBody()->getContents();
+        try{
+            $response = $this->client->request('POST', '/assignVdi',[  
+                "json"=> [  
+                        "name" => $name,
+                        "username"=> $username
+                        ]
+            ]);
+            return $response->getBody()->getContents();
+        } catch (GuzzleHttp\Exception\ClientException $exception) {
+            return respond(json_decode($exception->getResponse()->getBody()->getContents())->message, 201);
+        }
     }
     
     function deleteVDI(){
@@ -96,7 +115,8 @@ class ApiController{
                     "username"=> $username
                     ]
         ]);
-         return $response->getBody()->getContents();
+      
+        return $response->getBody()->getContents();
      }
 
     function editVDI(){

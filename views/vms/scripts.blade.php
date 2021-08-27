@@ -52,7 +52,6 @@
         let name = line.querySelector("#name").innerHTML;
         form.append("name",name);
         request(API('destroy_machine'), form, function(response) {
-            console.log(response);
             getVM();
         }, function(error) {
             showSwal(error.message, 'error', 5000);
@@ -102,11 +101,13 @@
         data.append("location", location);
 
         request(API('create_vm'), data, function(response) {
-
+            response = JSON.parse(response)["message"];
+            showSwal(response, 'success', 3000);  
             $('#createVMModal').modal("hide");
-            getVM();
-            showSwal(message, 'success', 3000);
-            }, function(response) {
+            setTimeout(function(){
+                getVM();
+            }, 3000);
+        }, function(response) {
                 let error = JSON.parse(response);
                 console.log(error.message);
                 showSwal(error.message, 'error', 3000);

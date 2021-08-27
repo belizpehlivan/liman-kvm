@@ -20,6 +20,8 @@ return [
 
     "check_configuration" => "ConfigurationController@checkConfiguration",
     "update_configuration_file" => "ConfigurationController@updateConfigurationFile",
-    "check_conf" => "ConfigurationController@checkConf"
+    "check_conf" => "ConfigurationController@checkConf",
+    "ldap_check" => "ApiController@ldapCheck"
+
 
 ];
