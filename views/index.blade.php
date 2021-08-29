@@ -32,6 +32,7 @@
 <script>
     if (location.hash ==="") {
         checkConfiguration();
+
     }
 
     $(document).ready(function(){
@@ -43,11 +44,9 @@
     function checkConf(){
 
         var form = new FormData();
-
         request(API('check_conf'), form, function(response) {
             response = JSON.parse(response)["message"];
             console.log(response);
-            
             if(response == "false")
                {
                 $(".gizli").css("display", "none");  
@@ -65,18 +64,13 @@
         var form = new FormData();
 
         request(API('ldap_check'), form, function(response) {
-            // console.log(response);
-            // response = JSON.parse(response);
-            //console.log(response);
-            console.log(response);
-            response = JSON.parse(response)["message"];
-            console.log("hello" + response);
-
             }, function(response) {
-                let error = JSON.parse(response);
-                showSwal(error.message, 'error', 3000);
+                showSwal(response, 'success', 3000);
+               // let error = JSON.parse(response);
+               // showSwal(error.message, 'error', 3000);
+                let error = JSON.parse(response)["message"];
+                showSwal(error, 'error', 3000);
             });
-            
     }
 
 </script>

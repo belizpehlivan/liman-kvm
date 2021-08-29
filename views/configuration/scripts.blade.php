@@ -47,12 +47,15 @@
             request(API('update_configuration_file'), form, function(response) {
                 checkConf();
                 checkConfiguration();
+                showSwal("Konfigürasyon Dosyası Güncellendi", 'success', 3000);
+                $(".gizli").css("display", "block"); 
                 }, function(response) {
                     let error = JSON.parse(response);
                     showSwal(error.message, 'error', 3000);
             });
         }
         else{
+            $(".gizli").css("display", "none");  
             showSwal("Lütfen Boş Alanları Doldurunuz!", 'error', 2000);
             return;
         }

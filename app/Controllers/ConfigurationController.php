@@ -8,12 +8,14 @@ use Liman\Toolkit\Shell\Command;
 class ConfigurationController
 {
     function checkConf(){
+
         $output = Command::runSudo("cat /usr/share/hvl/vdi/vdi.conf 2>&1");
         if(str_contains($output, "cat:") || $output == null) 
             return respond("false", 200);
         else 
             return respond("true", 200);
     }
+
     function checkConfiguration(){
 
         $output = Command::runSudo("cat /usr/share/hvl/vdi/vdi.conf 2>&1");
@@ -38,7 +40,7 @@ class ConfigurationController
                     }
                     $item++;
                 }
-                return respond($data,200);//return data
+                return respond($data,200);
             }       
         }
     }

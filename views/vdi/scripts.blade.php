@@ -9,7 +9,6 @@
         var form = new FormData();
         request(API('get_vm_data'), form, function(response) {
             response = JSON.parse(response);
-            //console.log(response["message"]);
             $("#select2").select2({
                 data: response["message"]
             })
@@ -23,7 +22,7 @@
     function listVdi(){
 
         showSwal('{{__("Yükleniyor...")}}','info');
-        let ip = "{{extensionDb('ip_kvmDb')}}"
+        let ip = "{{extensionDb('ip')}}"
 
         var form = new FormData();
         form.append("name", name);
@@ -31,7 +30,6 @@
         form.append("ip", ip);
           
         request(API('list_vdi'), form, function(response) {
-           // console.log(response);
             $('#vdiTable').html(response).find('table').DataTable(dataTablePresets('normal'));
             Swal.close();
             }, function(response) {
@@ -42,10 +40,9 @@
     }
     function assignVdi(){
 
-       // let name = document.getElementById("name").value;
         let name = $('#select2').select2('data')[0]["text"];
         let username = document.getElementById("username").value;
-        let ip = "{{extensionDb('ip_kvmDb')}}"
+        let ip = "{{extensionDb('ip')}}"
 
         var form = new FormData();
         form.append("name", name);
@@ -54,10 +51,7 @@
 
         request(API('assign_vdi'), form, function(response) {
             console.log(response);
-            $('#assignVdiModal').modal('hide');
-           // message = JSON.parse(response);
-          //  showSwal(message, 'success', 3000); 
-
+            $('#assignVdiModal').modal('hide'); 
             setTimeout(function(){
                 listVdi();
             }, 3000);
@@ -69,9 +63,7 @@
     function deleteVdi(line){
 
         var form = new FormData();
-       
-        let ip = "{{extensionDb('ip_kvmDb')}}"
-        
+        let ip = "{{extensionDb('ip')}}"
         form.append("name", line.querySelector("#name").innerHTML);
         form.append("username", line.querySelector("#username").innerHTML);
         form.append("ip", ip);
@@ -79,9 +71,9 @@
         request(API('delete_vdi'), form, function(response) {
             message = JSON.parse(response)["message"];
             console.log(message);
-            showSwal(message, "success", 3000); 
+            listVdi();
             setTimeout(function(){
-                listVdi();
+                showSwal(message, "success", 3000); 
             }, 3000);
             }, function(response) {
                 let error = JSON.parse(response);
@@ -93,6 +85,7 @@
     var selectedVdiUsername;
 
     function showEditVdiModal(line){
+
         $('#editVdiModal').modal('show');
         selectedVdiName = line.querySelector("#name").innerHTML;
         selectedVdiUsername = line.querySelector("#username").innerHTML;
@@ -106,7 +99,7 @@
         form.append("new_username", document.getElementById("new_username").value);
         form.append("name", selectedVdiName);
         form.append("username", selectedVdiUsername);
-        form.append("ip", "{{extensionDb('ip_kvmDb')}}");
+        form.append("ip", "{{extensionDb('ip')}}");
 
         request(API('edit_vdi'), form, function(response) {
             $('#editVdiModal').modal('hide');

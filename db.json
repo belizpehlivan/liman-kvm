@@ -2,12 +2,12 @@
     "name": "LimanKVM",
     "publisher": "Administrator",
     "version": "0.0.1",
-    "version_code": 4,
+    "version_code": 5,
     "database": [
         {
-            "variable": "ip_kvmDb",
+            "variable": "ip",
             "type": "text",
-            "name": "ip_kvmDb",
+            "name": "ip",
             "required": false
         }
     ],
