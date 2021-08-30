@@ -1,10 +1,9 @@
 <script>
- $(document).ready(function(){
-        //console.log("hello");
+
+    $(document).ready(function(){
         getVmData();
-       
     });
-    
+
     function getVmData(){
         var form = new FormData();
         request(API('get_vm_data'), form, function(response) {
@@ -19,8 +18,8 @@
             showSwal(error.message, 'error', 3000);
         });
     }
-    function listVdi(){
 
+    function listVdi(){
         showSwal('{{__("Yükleniyor...")}}','info');
         let ip = "{{extensionDb('ip')}}"
 
@@ -38,6 +37,7 @@
             showSwal(error.message, 'error', 3000);
             });
     }
+
     function assignVdi(){
 
         let name = $('#select2').select2('data')[0]["text"];
@@ -60,6 +60,7 @@
                 showSwal(error, 'error', 3000);
             });
     }
+    
     function deleteVdi(line){
 
         var form = new FormData();
@@ -109,6 +110,4 @@
                 showSwal(error.message, 'error', 3000);
             });
     }
-
-
 </script>

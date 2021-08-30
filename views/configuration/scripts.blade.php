@@ -3,23 +3,25 @@
         var form = new FormData();
 
         request(API('check_configuration'), form, function(response) {
-            data = JSON.parse(response)["message"];
 
+            data = JSON.parse(response)["message"];
             if(data == "create"){ 
+                $(".gizli").css("display", "none");  
                 $("#confAlert").addClass("alert-danger");
                 $("#confAlert").html("Konfigürasyon dosyasını oluşturmak için formu doldurunuz!");
             }
             else {   
-                //datadan gelenleri koy
+                $(".gizli").css("display", "block"); 
                 $("#confAlert").removeClass("alert-danger");
                 $("#confAlert").addClass("alert-success");        
                 $("#confAlert").html("Konfigürasyon dosyasının içeriğini aşağıdan görebilir ve güncelleyebilirsiniz.");
-                
+               
                 $('#ldaphost').val(data[0]);
                 $('#ldapbasedn').val(data[1]);
                 $('#ldapusername').val(data[2]);
                 $('#ldappassword').val(data[3]);
                 $('#hostip').val(data[4]);
+
             }
         }, function(response) {
             let error = JSON.parse(response);
@@ -45,7 +47,7 @@
             form.append("hostip",$('#hostip').val());
 
             request(API('update_configuration_file'), form, function(response) {
-                checkConf();
+                ldapCheck();
                 checkConfiguration();
                 showSwal("Konfigürasyon Dosyası Güncellendi", 'success', 3000);
                 $(".gizli").css("display", "block"); 

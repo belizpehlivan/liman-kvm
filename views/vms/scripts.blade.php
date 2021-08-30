@@ -1,9 +1,9 @@
 <script>
     function getVM(){
+
         showSwal('{{__("Yükleniyor...")}}','info');
             var form = new FormData();
             request(API('get_vms'), form, function(response) {
-               // console.log(response);
             $('#vmsTable').html(response).find('table').DataTable(dataTablePresets('normal'));
             Swal.close();
             }, function(response) {
@@ -26,6 +26,7 @@
     }
 
     function rebootMachine(line){
+
         var form = new FormData();
         let name = line.querySelector("#name").innerHTML;
         form.append("name",name);
@@ -36,7 +37,9 @@
             showSwal(error.message, 'error', 5000);
         });
     }
+
     function shutdownMachine(line){
+
         var form = new FormData();
         let name = line.querySelector("#name").innerHTML;
         form.append("name",name);
@@ -47,7 +50,9 @@
             showSwal(error.message, 'error', 5000);
         });
     }
+
     function destroyMachine(line){
+
         var form = new FormData();
         let name = line.querySelector("#name").innerHTML;
         form.append("name",name);
@@ -57,7 +62,9 @@
             showSwal(error.message, 'error', 5000);
         });
     }
+
     function deleteMachine(line){
+
         var form = new FormData();
         let name = line.querySelector("#name").innerHTML;
         form.append("name",name);
@@ -74,9 +81,7 @@
         var form = new FormData();
         let name = line.querySelector("#name").innerHTML;
         form.append("name", name);
-
         request(API('list_cpu_info'), form, function(response) {
-           // console.log(response);
             $("#machineInfoModal").modal('show');
             $('#cpuInfoTable').html(response);//.find('table').DataTable(dataTablePresets('normal'));
             Swal.close();

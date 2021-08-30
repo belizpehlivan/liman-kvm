@@ -1,3 +1,4 @@
+<div class="alert alert-danger ldapAlertDisplay" role="alert"  display="none"></div>
 @include('modal-button', [
                     "class" => "btn btn-success mb-2",
                     "target_id" => "assignVdiModal",
