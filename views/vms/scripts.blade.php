@@ -76,14 +76,44 @@
         });
     }
 
-    function cpuInfo(line){
+    var selectedVM;
+
+    function showVmInfo(line){
+        $("#vmInfoModal").modal('show');
+        selectedVM = line.querySelector("#name").innerHTML;
+    }
+
+    $('#v-pills-cpuInfo-tab').on('click', function () {
+          //  e.preventDefault()
+          //  $(this).tab('show')
+            cpuInfo();
+    })
+
+    function cpuInfo(){
         
         var form = new FormData();
-        let name = line.querySelector("#name").innerHTML;
+        let name = selectedVM;
         form.append("name", name);
         request(API('list_cpu_info'), form, function(response) {
-            $("#machineInfoModal").modal('show');
-            $('#cpuInfoTable').html(response);//.find('table').DataTable(dataTablePresets('normal'));
+            $('#cpuInfoTable').html(response);
+            Swal.close();
+            }, function(response) {
+            let error = JSON.parse(response);
+            Swal.close();
+            showSwal(error.message, 'error', 3000);
+        });
+    }
+
+
+
+    function diskSize(){
+
+        var form = new FormData();
+        let name = selectedVM;
+        form.append("name", name);
+        request(API('vm_disk_size'), form, function(response) {
+           // console.log(response);
+            $('#diskSizeTable').html(response);
             Swal.close();
             }, function(response) {
             let error = JSON.parse(response);

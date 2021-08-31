@@ -9,10 +9,11 @@ return [
     "shutdown_machine" => "VMController@shutdownMachine",
     "destroy_machine" => "VMController@destroyMachine",
     "delete_machine" => "VMController@deleteMachine",
-    "list_cpu_info" => "VMController@listCpuInfo",
     "create_vm" => "VMController@createVM",
     "get_vm_data" => "VMController@getVmData",
-    
+    "list_cpu_info" => "VMController@listCpuInfo",
+    "vm_disk_size" => "VMController@VmDiskSize",
+
     "assign_vdi" => "ApiController@assignVDI",
     "list_vdi" => "ApiController@listVDI",
     "delete_vdi" => "ApiController@deleteVDI",
@@ -21,6 +22,5 @@ return [
     "check_configuration" => "ConfigurationController@checkConfiguration",
     "update_configuration_file" => "ConfigurationController@updateConfigurationFile",
     "ldap_check" => "ApiController@ldapCheck"
-
-
+    
 ];

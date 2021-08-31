@@ -45,10 +45,15 @@
             $(".ldapAlertDisplay").css("display", "none");
             return true;
         }, function(response) {
+
             let error = JSON.parse(response)["message"];
             showSwal(error, 'error', 3000); 
-            $(".ldapAlertDisplay").html("Ldap Bağlantınızı Kontrol Ediniz");
             $(".ldapAlertDisplay").css("display", "block"); 
+
+            if(!error.includes("Ldap"))
+                $(".ldapAlertDisplay").html("Sunucu Bağlantılarınızı Kontrol Ediniz");
+            else  
+                $(".ldapAlertDisplay").html("Ldap Bağlantınızı Kontrol Ediniz");
             return false;
         });
     }

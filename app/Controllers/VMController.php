@@ -57,7 +57,7 @@ class VMController
             "value" => $data,
             "title" => ["*hidden*", "İSİM", "DURUM"],
             "display" => ["id:id","name", "state"],
-            "onclick" => "cpuInfo",
+            "onclick" => "showVmInfo",
             "menu" => [
                 "Başlat" => [
                     "target" => "startMachine",
@@ -174,6 +174,39 @@ class VMController
             "title" => ["VCPU", "CPU", "STATE", "CPU TIME", "CPU AFFINITY"],
             "display" => ["vcpu", "cpu", "state", "cpu_time", "cpu_affinity"]
         ]);
+    }
+
+    function VmDiskSize(){
+
+        $output = Command::runSudo("virt-df -h -d @{:name}",[
+            "name" => request("name")
+        ]);
+        $output = explode("\n", $output);
+        $index=0;
+        $data = [];
+        foreach($output as $line){
+            $line = preg_replace("/ {2,}/", " ",  $line);
+            $line = explode(" ", $line);   
+            if($index!=0){
+                $data[] = [
+                    "filesystem" => $line[0],
+                    "size" => $line[1],
+                    "used" => $line[2],
+                    "available" => $line[3],
+                    "use" => $line[4]
+                ];
+            }
+            $index++;
+        }
+
+        return view('table', [
+            "value" => $data,
+            "title" => ["File System", "Size", "Used", "Available", "Use%"],
+            "display" => ["filesystem", "size", "used", "available", "use"]
+        ]);
+        
+
+      //  return respond($output,200);
     }
 
     function createVM(){

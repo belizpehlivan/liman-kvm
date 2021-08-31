@@ -1,5 +1,5 @@
 @component("modal-component", [
-    "id" => "machineInfoModal",
+    "id" => "vmInfoModal",
     "title" => "CPU Bilgileri",
     "footer" => 
             [
@@ -8,7 +8,26 @@
                 "text" => "Kapat"
             ]
     ])    
-    <div class="table-responsive" id="cpuInfoTable"></div>
+    <div class="row">
+        <div class="col-3">
+            <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                <a class="nav-link active" onclick="cpuInfo()" id="v-pills-cpuInfo-tab" data-toggle="pill" href="#v-pills-cpuInfo" role="tab" aria-controls="v-pills-cpuInfo" aria-selected="true">
+                {{__('Cpu Bilgileri')}}</a>
+                <a class="nav-link" onclick="diskSize()" id="v-pills-diskSize-tab" data-toggle="pill" href="#v-pills-diskSize" role="tab" aria-controls="v-pills-diskSize" aria-selected="false">
+                {{__('Disk Boyutu')}}</a>
+            </div>
+        </div>
+        <div class="col-9">
+            <div class="tab-content" id="v-pills-tabContent">
+                <div class="tab-pane fade show active" id="v-pills-cpuInfo" role="tabpanel" aria-labelledby="v-pills-cpuInfo-tab">
+                    <div class="table-responsive" id="cpuInfoTable"></div>
+                </div>
+                <div class="tab-pane fade" id="v-pills-diskSize" role="tabpanel" aria-labelledby="v-pills-diskSize-tab">
+                        <div class="table-responsive" id="diskSizeTable"></div>
+                </div>
+            </div>
+        </div>
+    </div>
 @endcomponent
 
 @include('modal-button', [
