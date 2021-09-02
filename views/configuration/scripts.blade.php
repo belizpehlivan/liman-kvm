@@ -47,7 +47,7 @@
             form.append("hostip",$('#hostip').val());
 
             request(API('update_configuration_file'), form, function(response) {
-                ldapCheck();
+                //ldapCheck();
                 checkConfiguration();
                 showSwal("Konfigürasyon Dosyası Güncellendi", 'success', 3000);
                 $(".gizli").css("display", "block"); 

@@ -139,6 +139,7 @@ class VMController
         Command::runSudo("virsh undefine @{:name}",["name" => request("name")]);
         Command::runSudo("virsh pool-refresh default",["name" => request("name")]);
         Command::runSudo("virsh vol-delete --pool default @{:name}.qcow2",["name" => request("name")]);
+       Command::runSudo("rm -rf /var/lib/libvirt/images/@{:name}.qcow2",["name" => request("name")]);
         return respond($output,200);
     }
 
@@ -214,6 +215,23 @@ class VMController
             "title" => request("title"),
             "location" => request("location")
 
+        ]);
+
+        if(str_contains($output, "ERROR")){
+            return respond($output,201);
+        }
+        else 
+            return respond("Sanal makine başarıyla oluşturuldu",200);
+    }
+
+    function createMasterImage(){
+
+        $outputCopy = Command::runSudo("cp /var/lib/libvirt/images/@{:vmName}.qcow2 /var/lib/libvirt/images/@{:masterTitle}.qcow2",[
+            "vmName" =>  request("vmName"),
+            "masterTitle" => request("masterTitle")
+        ]);
+        $output = Command::runSudo("virt-install --name @{:title} --description 'deneme' --ram=2048 --vcpus=2 --os-type=Linux --os-variant=debian10 --disk /var/lib/libvirt/images/@{:title}.qcow2,device=disk,format=qcow2 --graphics spice,listen=0.0.0.0 --video qxl --channel spicevmc  --network bridge:br0  --noautoconsole --import --boot hd 2>&1",[
+            "title" => request("masterTitle")
         ]);
 
         if(str_contains($output, "ERROR")){

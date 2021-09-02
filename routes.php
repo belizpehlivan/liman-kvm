@@ -13,6 +13,7 @@ return [
     "get_vm_data" => "VMController@getVmData",
     "list_cpu_info" => "VMController@listCpuInfo",
     "vm_disk_size" => "VMController@VmDiskSize",
+    "create_master_image" => "VMController@createMasterImage",
 
     "assign_vdi" => "ApiController@assignVDI",
     "list_vdi" => "ApiController@listVDI",
@@ -20,7 +21,6 @@ return [
     "edit_vdi" => "ApiController@editVDI",
 
     "check_configuration" => "ConfigurationController@checkConfiguration",
-    "update_configuration_file" => "ConfigurationController@updateConfigurationFile",
-    "ldap_check" => "ApiController@ldapCheck"
+    "update_configuration_file" => "ConfigurationController@updateConfigurationFile"
     
 ];

@@ -1,6 +1,6 @@
 <ul class="nav nav-tabs" role="tablist" style="margin-bottom: 15px;">
     <li class="nav-item">
-        <a class="nav-link active" onclick="checkConfiguration();ldapCheck();" href="#configuration" data-toggle="tab">
+        <a class="nav-link active" onclick="checkConfiguration()" href="#configuration" data-toggle="tab">
             <i class="fas fa-tasks"></i> {{ __("Konfigürasyon") }}
         </a>
     </li>
@@ -10,7 +10,7 @@
         </a>
     </li>
     <li class="nav-item gizli">
-        <a class="nav-link" onclick="ldapCheck();listVdi();" href="#vdi" data-toggle="tab">
+        <a class="nav-link" onclick="listVdi();" href="#vdi" data-toggle="tab">
             <i class="fas fa-desktop"></i> {{ __("VDI") }}
         </a>
     </li>
@@ -33,7 +33,7 @@
 
     if (location.hash ==="") {
         checkConfiguration();
-        ldapCheck();
+      //  ldapCheck();
     }
 
     function ldapCheck()
@@ -47,6 +47,7 @@
         }, function(response) {
 
             let error = JSON.parse(response)["message"];
+            console.log(response);
             showSwal(error, 'error', 3000); 
             $(".ldapAlertDisplay").css("display", "block"); 
 

@@ -60,6 +60,39 @@
             </form>
  @endcomponent
 
+ @include('modal-button', [
+                    "class" => "btn btn-success mb-2",
+                    "target_id" => "masterImgModal",
+                    "text" => "Master Image Oluştur"
+        ])
+
+@component('modal-component',[
+                "id" => "masterImgModal",
+                "title" => "Lütfen oluşturmak istediğiniz makinenin bilgilerini giriniz",
+                "footer" => 
+            [
+                "class" => "btn-success",
+                "onclick" => "createMasterImg()",
+                "text" => "Oluştur"
+            ]
+                
+            ]) 
+       
+            <form>
+                <div class="form-group">
+                    <label for="masterTitle">{{__('Title')}}</label>
+                    <input class="form-control" id="masterTitle" >
+                </div>
+                <div class="form-group">
+                    <label for="vmName">{{__('Disk Location')}}</label>
+                    <input class="form-control" id="vmName">
+                </div>
+            </form>
+ @endcomponent
+
+
+
+
 <div class="table-responsive" id="vmsTable"></div>
 
 @include("vms.scripts")

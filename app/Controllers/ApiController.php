@@ -20,18 +20,27 @@ function __construct(){
     );
 
 }
-    function ldapCheck(){
 
+    function ldapCheck(){
+/*
         try{
             $response = $this->client->request('GET', '/testLdap');
             return $response->getBody()->getContents();
         } catch (GuzzleHttp\Exception\ServerException $exception) {
-            return respond(json_decode($exception->getResponse()->getBody()->getContents())->message, 201);
+            if($exception->getResponse() && $exception->getResponse()->getStatusCode() > 400){
+                $message = 
+                    json_decode($exception->getResponse()->getBody()->getContents())
+                    ->message;
+            }else{
+                $message = $exception->getMessage();
+            }
+            return respond($exception->getMessage(),201);
         }
-
-        //$response = $this->client->request('GET', '/testLdap');
-        //return $response->getBody()->getContents();
+*/
     }
+    
+
+
 
     function listVDI(){
         

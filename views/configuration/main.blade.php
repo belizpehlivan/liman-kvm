@@ -1,5 +1,5 @@
 <div class="alert" role="alert" id="confAlert"></div>
-<div class="alert alert-danger ldapAlertDisplay" role="alert" display="none"></div>
+<!--<div class="alert alert-danger ldapAlertDisplay" role="alert" display="none"></div>-->
 
 <div id="conf-form">
     <form>
