@@ -149,28 +149,40 @@
             });
     }   
 
+    //masterVmTaskModal
     function createMasterImg(){
 
         let title = document.getElementById("masterTitle").value;
         let location = document.getElementById("vmName").value;
 
         var data = new FormData();
-        data.append("masterTitle", title);
-        data.append("vmName", location);
+        //data.append("masterTitle", title);
+       // data.append("vmName", location);
 
         request(API('create_master_image'), data, function(response) {
-            response = JSON.parse(response)["message"];
-            showSwal(response, 'success', 3000);  
-            $('#masterImgModal').modal("hide");
+            let output = JSON.parse(response).message;
+            $('#masterImgModal').modal("hide"); 
+           // $("#install").attr("disabled","true");           
+           // $('#masterVmTaskModal').modal({backdrop: 'static', keyboard: false})
+            $('#masterVmTaskModal').find('.modal-body').html(output);
+            $('#masterVmTaskModal').modal("show");     
+            Swal.close();
+            /*
             setTimeout(function(){
                 getVM();
-            }, 3000);
-        }, function(response) {
-                let error = JSON.parse(response);
-                console.log(error.message);
-                showSwal(error.message, 'error', 3000);
-            });
+            }, 3000);*/
+        }, function(response){
+            let error = JSON.parse(response).message;
+            showSwal(error,'error',2000);
+        })
+    }
+    function onTaskSuccess(){
+        showSwal('{{__("Task başarılı.")}}', 'success', 2000);
+        // $('#exampleTaskModal').modal("hide"); 
     }
 
+    function onTaskFail(){
+        showSwal('{{__("Task başarısız.")}}', 'error', 2000);
+    }
         
 </script>

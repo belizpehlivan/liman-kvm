@@ -97,7 +97,7 @@ class VMController
         else
             return respond("Machine started",200);
     }
-
+   
     function rebootMachine(){
         $output = Command::runSudo("virsh reboot @{:name} 2>&1",[
                 "name" => request("name")
@@ -223,7 +223,7 @@ class VMController
         else 
             return respond("Sanal makine başarıyla oluşturuldu",200);
     }
-
+/*
     function createMasterImage(){
 
         $outputCopy = Command::runSudo("cp /var/lib/libvirt/images/@{:vmName}.qcow2 /var/lib/libvirt/images/@{:masterTitle}.qcow2",[
@@ -239,5 +239,25 @@ class VMController
         }
         else 
             return respond("Sanal makine başarıyla oluşturuldu",200);
+    }*/
+
+    function createMasterImage(){
+        //request("vmName");
+        //request("masterTitle");
+        /*'onFail' => 'onTaskFail',
+        'onSuccess' => 'onTaskSuccess', */
+
+        return respond(
+            view('task', [
+                'tasks' => [
+                   0 => [
+                        'name' => 'masterImageTask',
+                        'attributes' => []
+                    ]
+                ]
+            ]),
+            200
+        );
+
     }
 }
