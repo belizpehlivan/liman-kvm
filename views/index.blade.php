@@ -15,8 +15,8 @@
         </a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" onclick="listVdi();" href="#vdi" data-toggle="tab">
-            <i class="fas fa-desktop"></i> {{ __("KVM Node") }}
+        <a class="nav-link" onclick="listImages();" href="#images" data-toggle="tab">
+            <i class="fas fa-desktop"></i> {{ __("Images") }}
         </a>
     </li>
 </ul>
@@ -31,6 +31,10 @@
     <div id="vdi" class="tab-pane">
         
         @include('vdi.main')
+    </div>
+    <div id="images" class="tab-pane">
+        
+        @include('images.main')
     </div>
 </div>
 

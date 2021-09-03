@@ -26,6 +26,7 @@ return [
     "check_configuration" => "ConfigurationController@checkConfiguration",
     "update_configuration_file" => "ConfigurationController@updateConfigurationFile",
     "node_info" => "ConfigurationController@nodeInfo",
-    "disk_info" => "ConfigurationController@diskInfo"
+    "disk_info" => "ConfigurationController@diskInfo",
+    "list_images" => "ImagesController@listImages"
     
 ];

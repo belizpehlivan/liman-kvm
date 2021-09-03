@@ -111,7 +111,11 @@
             </form>
  @endcomponent
 
-
+ @component('modal-component',[
+        "id" => "masterVmTaskModal",
+        "title" => "Oluşturuluyor",
+    ])
+@endcomponent
 
 
 <div class="table-responsive" id="vmsTable"></div>

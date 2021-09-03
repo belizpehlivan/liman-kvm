@@ -150,6 +150,7 @@ var selectedVM;
             });
     }   
 
+    //masterVmTaskModal
     function createMasterImg(){
 
         let draftName = document.getElementById("draftName").value;
@@ -160,9 +161,14 @@ var selectedVM;
         data.append("masterName", masterName);
 
         request(API('create_master_image'), data, function(response) {
-            response = JSON.parse(response)["message"];
-            showSwal(response, 'success', 3000);  
-            $('#masterImgModal').modal("hide");
+            let output = JSON.parse(response).message;
+            $('#masterImgModal').modal("hide"); 
+           // $("#install").attr("disabled","true");           
+           // $('#masterVmTaskModal').modal({backdrop: 'static', keyboard: false})
+            $('#masterVmTaskModal').find('.modal-body').html(output);
+            $('#masterVmTaskModal').modal("show");     
+            Swal.close();
+            /*
             setTimeout(function(){
                 getVM();
             }, 3000);

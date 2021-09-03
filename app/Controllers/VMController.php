@@ -97,7 +97,7 @@ class VMController
         else
             return respond("Machine started",200);
     }
-
+   
     function rebootMachine(){
         $output = Command::runSudo("virsh reboot @{:name} 2>&1",[
                 "name" => request("name")
@@ -215,7 +215,7 @@ class VMController
         else 
             return respond("Sanal makine başarıyla oluşturuldu",200);
     }
-
+/*
     function createMasterImage(){
         Command::runSudo("virsh destroy @{:draftName}",[
             "draftName" => request("draftName")
@@ -231,6 +231,26 @@ class VMController
         }
         else 
             return respond("Sanal makine başarıyla oluşturuldu",200);
+    }*/
+
+    function createMasterImage(){
+        //request("vmName");
+        //request("masterTitle");
+        /*'onFail' => 'onTaskFail',
+        'onSuccess' => 'onTaskSuccess', */
+
+        return respond(
+            view('task', [
+                'tasks' => [
+                   0 => [
+                        'name' => 'masterImageTask',
+                        'attributes' => []
+                    ]
+                ]
+            ]),
+            200
+        );
+
     }
 
     function changeVmMemorySize(){
