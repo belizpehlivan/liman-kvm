@@ -1,4 +1,42 @@
 <script>
+    function confFunctions(){
+        checkConfiguration();
+        nodeInfo();
+        diskInfo();
+        nodecpustats();
+        nodememstats();
+    }
+
+    function nodecpustats(){
+
+        var form = new FormData();
+        request(API('nodecpustats'), form, function(response) {
+
+            data = JSON.parse(response).message;
+            $("#nodecpustats").css("font-size", "15px");
+            $("#nodecpustats").text(data);
+            
+        }, function(response) {
+                let error = JSON.parse(response);
+                showSwal(error.message, 'error', 3000);
+        });
+    }
+
+    function nodememstats(){
+
+        var form = new FormData();
+        request(API('nodememstats'), form, function(response) {
+
+            data = JSON.parse(response).message;
+            $("#nodememstats").css("font-size", "15px");
+            $("#nodememstats").text(data);
+            
+        }, function(response) {
+                let error = JSON.parse(response);
+                showSwal(error.message, 'error', 3000);
+        });
+    }
+
     function nodeInfo(){
 
             var form = new FormData();
@@ -30,6 +68,7 @@
                         showSwal(error.message, 'error', 3000);
             });
     }
+
 
     function checkConfiguration(){
         
@@ -95,6 +134,18 @@
             return;
         }
   
+    }
+
+    function checkLdap(){
+        var form = new FormData();
+        request(API('check_ldap'), form, function(response) {
+            message = JSON.parse(response)["message"];
+            showSwal(message, 'success', 3000);
+            
+        }, function(response) {
+                let error = JSON.parse(response);
+                showSwal(error.message, 'error', 3000);
+        });
     }
 
 

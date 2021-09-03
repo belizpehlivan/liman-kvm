@@ -1,6 +1,6 @@
 <ul class="nav nav-tabs" role="tablist" style="margin-bottom: 15px;">
     <li class="nav-item">
-        <a class="nav-link active" onclick="checkConfiguration();nodeInfo();diskInfo();" href="#configuration" data-toggle="tab">
+        <a class="nav-link active" onclick="confFunctions()" href="#configuration" data-toggle="tab">
             <i class="fas fa-tasks"></i> {{ __("Konfigürasyon") }}
         </a>
     </li>
@@ -50,9 +50,7 @@
 <script>
 
     if (location.hash ==="") {
-        checkConfiguration();
-        nodeInfo();
-      //  ldapCheck();
+        confFunctions();
     }
 
     function ldapCheck()

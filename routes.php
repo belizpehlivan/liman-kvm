@@ -22,12 +22,17 @@ return [
     "list_vdi" => "ApiController@listVDI",
     "delete_vdi" => "ApiController@deleteVDI",
     "edit_vdi" => "ApiController@editVDI",
+    "check_ldap" => "ApiController@checkLdap",
 
     "check_configuration" => "ConfigurationController@checkConfiguration",
     "update_configuration_file" => "ConfigurationController@updateConfigurationFile",
     "node_info" => "ConfigurationController@nodeInfo",
     "disk_info" => "ConfigurationController@diskInfo",
+    "nodecpustats" => "ConfigurationController@nodeCpuStats",
+    "nodememstats" => "ConfigurationController@nodeMemStats",
+
     "list_images" => "ImagesController@listImages",
+
     "list_isos" => "IsosController@listIsos"
     
 ];

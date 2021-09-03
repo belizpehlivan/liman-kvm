@@ -163,12 +163,14 @@ var selectedVM;
         request(API('create_master_image'), data, function(response) {
             let output = JSON.parse(response).message;
             $('#masterImgModal').modal("hide"); 
+            showSwal(output, 'success', 3000);
+            
            // $("#install").attr("disabled","true");           
            // $('#masterVmTaskModal').modal({backdrop: 'static', keyboard: false})
-            $('#masterVmTaskModal').find('.modal-body').html(output);
-            $('#masterVmTaskModal').modal("show");     
+           // $('#masterVmTaskModal').find('.modal-body').html(output);
+           // $('#masterVmTaskModal').modal("show");     
             Swal.close();
-            /*
+            
             setTimeout(function(){
                 getVM();
             }, 3000);
@@ -180,8 +182,8 @@ var selectedVM;
           
         }, function(response) {
                 let error = JSON.parse(response);
-               // console.log(error.message);
-               // showSwal(error.message, 'error', 3000);
+                console.log(error.message);
+                showSwal(error.message, 'error', 3000);
             });
     }
     function changeVmMem(){

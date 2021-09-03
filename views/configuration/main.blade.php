@@ -1,6 +1,6 @@
 <!--<div class="alert alert-danger ldapAlertDisplay" role="alert" display="none"></div>-->
 <div class="row">
-    <div class="col-sm-9">
+    <div class="col-sm-6">
         <div class="card">
             <div class="card-body">
                 <div class="alert" role="alert" id="confAlert"></div>
@@ -22,8 +22,23 @@
                     <input class="form-control" type="text" id="hostip" required>
                     <br>
                     <button type="button" class="btn btn-success btn-sm" onclick="updateConf()">Kaydet</button>
+                    <button type="button" class="btn btn-success btn-sm" onclick="checkLdap()">Ldap Bağlantısını Kontrol Et</button>
                 </form>
                 </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <div class="card">
+            <div class="card-body">
+                <label style="font-size:15px;">Disk Info</label>
+                <pre id="diskInfo"></pre>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-body">
+                <label style="font-size:15px;">Cpu Stats</label>
+                <pre id="nodecpustats"></pre>
             </div>
         </div>
     </div>
@@ -36,8 +51,8 @@
         </div>
         <div class="card">
             <div class="card-body">
-                <label style="font-size:15px;">Disk Info</label>
-                <pre id="diskInfo"></pre>
+                <label style="font-size:15px;">Memory Stats</label>
+                <pre id="nodememstats"></pre>
             </div>
         </div>
     </div>

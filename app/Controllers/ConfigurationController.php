@@ -47,6 +47,16 @@ class ConfigurationController
         return respond($output,200);
     }
 
+    function nodeCpuStats(){
+        $output = Command::runSudo("virsh nodecpustats");
+        return respond($output,200);
+    }
+
+    function nodeMemStats(){
+        $output = Command::runSudo("virsh nodememstats");
+        return respond($output,200);
+    }
+
     function updateConfigurationFile(){
         
         $ldap_host = request("ldaphost");

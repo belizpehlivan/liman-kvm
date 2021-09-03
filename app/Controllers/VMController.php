@@ -215,11 +215,11 @@ class VMController
         else 
             return respond("Sanal makine başarıyla oluşturuldu",200);
     }
-/*
+
     function createMasterImage(){
         Command::runSudo("virsh destroy @{:draftName}",[
             "draftName" => request("draftName")
-        ]); showSwal(response, 'success', 3000);  
+        ]); 
 
         $output = Command::runSudo("virt-clone --connect qemu:///system --original @{:draftName} --name @{:masterName} --file /var/lib/libvirt/images/@{:masterName}.qcow2 2>&1",[
                 "draftName" => request("draftName"),
@@ -230,14 +230,14 @@ class VMController
             return respond($output,201);
         }
         else 
-            return respond("Sanal makine başarıyla oluşturuldu",200);
-    }*/
-
+            return respond("Başarıyla Oluşturuldu",200);
+    }
+/*
     function createMasterImage(){
         //request("vmName");
         //request("masterTitle");
-        /*'onFail' => 'onTaskFail',
-        'onSuccess' => 'onTaskSuccess', */
+        'onFail' => 'onTaskFail',
+        'onSuccess' => 'onTaskSuccess', 
 
         return respond(
             view('task', [
@@ -251,7 +251,7 @@ class VMController
             200
         );
 
-    }
+    }*/
 
     function changeVmMemorySize(){
 

@@ -21,8 +21,7 @@ function __construct(){
 
 }
 
-    function ldapCheck(){
-/*
+    function checkLdap(){
         try{
             $response = $this->client->request('GET', '/testLdap');
             return $response->getBody()->getContents();
@@ -34,13 +33,10 @@ function __construct(){
             }else{
                 $message = $exception->getMessage();
             }
-            return respond($exception->getMessage(),201);
+            return respond($message,201);
         }
-*/
+
     }
-    
-
-
 
     function listVDI(){
         
