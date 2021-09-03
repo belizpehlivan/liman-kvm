@@ -1,5 +1,5 @@
 <script>
-
+ //export { getVmData };
     $(document).ready(function(){
         getVmData();
     });
@@ -7,18 +7,18 @@
     function getVmData(){
         var form = new FormData();
         request(API('get_vm_data'), form, function(response) {
+            console.log("test");
             response = JSON.parse(response);
             $("#select2").select2({
                 data: response["message"]
             })
-            return;
         }, function(response) {
             let error = JSON.parse(response);
             Swal.close();
             showSwal(error.message, 'error', 3000);
         });
     }
-
+   
     function listVdi(){
         showSwal('{{__("Yükleniyor...")}}','info');
         let ip = "{{extensionDb('ip')}}"

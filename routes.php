@@ -14,6 +14,9 @@ return [
     "list_cpu_info" => "VMController@listCpuInfo",
     "vm_disk_size" => "VMController@VmDiskSize",
     "create_master_image" => "VMController@createMasterImage",
+    "change_vm_memory_size" => "VMController@changeVmMemorySize",
+    "show_vm_memory" => "VMController@showVmMemory",
+    "change_num_of_cpu" => "VMController@changeNumOfCpu",
 
     "assign_vdi" => "ApiController@assignVDI",
     "list_vdi" => "ApiController@listVDI",
@@ -21,6 +24,8 @@ return [
     "edit_vdi" => "ApiController@editVDI",
 
     "check_configuration" => "ConfigurationController@checkConfiguration",
-    "update_configuration_file" => "ConfigurationController@updateConfigurationFile"
+    "update_configuration_file" => "ConfigurationController@updateConfigurationFile",
+    "node_info" => "ConfigurationController@nodeInfo",
+    "disk_info" => "ConfigurationController@diskInfo"
     
 ];

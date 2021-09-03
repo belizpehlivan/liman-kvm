@@ -1,6 +1,6 @@
 <ul class="nav nav-tabs" role="tablist" style="margin-bottom: 15px;">
     <li class="nav-item">
-        <a class="nav-link active" onclick="checkConfiguration()" href="#configuration" data-toggle="tab">
+        <a class="nav-link active" onclick="checkConfiguration();nodeInfo();diskInfo();" href="#configuration" data-toggle="tab">
             <i class="fas fa-tasks"></i> {{ __("Konfigürasyon") }}
         </a>
     </li>
@@ -12,6 +12,11 @@
     <li class="nav-item gizli">
         <a class="nav-link" onclick="listVdi();" href="#vdi" data-toggle="tab">
             <i class="fas fa-desktop"></i> {{ __("VDI") }}
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" onclick="listVdi();" href="#vdi" data-toggle="tab">
+            <i class="fas fa-desktop"></i> {{ __("KVM Node") }}
         </a>
     </li>
 </ul>
@@ -33,6 +38,7 @@
 
     if (location.hash ==="") {
         checkConfiguration();
+        nodeInfo();
       //  ldapCheck();
     }
 

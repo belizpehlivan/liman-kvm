@@ -176,47 +176,39 @@ class VMController
             "display" => ["vcpu", "cpu", "state", "cpu_time", "cpu_affinity"]
         ]);
     }
-
     function VmDiskSize(){
 
         $output = Command::runSudo("virt-df -h -d @{:name}",[
             "name" => request("name")
         ]);
         $output = explode("\n", $output);
-        $index=0;
-        $data = [];
-        foreach($output as $line){
+        array_splice($output, 0, 1);
+        foreach($output as &$line){
             $line = preg_replace("/ {2,}/", " ",  $line);
             $line = explode(" ", $line);   
-            if($index!=0){
-                $data[] = [
+                $line = [
                     "filesystem" => $line[0],
                     "size" => $line[1],
                     "used" => $line[2],
                     "available" => $line[3],
                     "use" => $line[4]
                 ];
-            }
-            $index++;
         }
 
         return view('table', [
-            "value" => $data,
+            "value" => $output,
             "title" => ["File System", "Size", "Used", "Available", "Use%"],
             "display" => ["filesystem", "size", "used", "available", "use"]
         ]);
-        
-
-      //  return respond($output,200);
     }
-
+  
     function createVM(){
         $output = Command::runSudo("virt-install --name @{:title} --description 'deneme' --ram=2048 --vcpus=2 --os-type=Linux --os-variant=debian10 --disk path=/var/lib/libvirt/images/@{:title}.qcow2,bus=virtio,size=8 --graphics spice,listen=0.0.0.0 --video qxl --channel spicevmc --cdrom @{:location} --network bridge:br0  --noautoconsole 2>&1",[
             "title" => request("title"),
             "location" => request("location")
 
         ]);
-
+     
         if(str_contains($output, "ERROR")){
             return respond($output,201);
         }
@@ -225,13 +217,13 @@ class VMController
     }
 
     function createMasterImage(){
+        Command::runSudo("virsh destroy @{:draftName}",[
+            "draftName" => request("draftName")
+        ]); showSwal(response, 'success', 3000);  
 
-        $outputCopy = Command::runSudo("cp /var/lib/libvirt/images/@{:vmName}.qcow2 /var/lib/libvirt/images/@{:masterTitle}.qcow2",[
-            "vmName" =>  request("vmName"),
-            "masterTitle" => request("masterTitle")
-        ]);
-        $output = Command::runSudo("virt-install --name @{:title} --description 'deneme' --ram=2048 --vcpus=2 --os-type=Linux --os-variant=debian10 --disk /var/lib/libvirt/images/@{:title}.qcow2,device=disk,format=qcow2 --graphics spice,listen=0.0.0.0 --video qxl --channel spicevmc  --network bridge:br0  --noautoconsole --import --boot hd 2>&1",[
-            "title" => request("masterTitle")
+        $output = Command::runSudo("virt-clone --connect qemu:///system --original @{:draftName} --name @{:masterName} --file /var/lib/libvirt/images/@{:masterName}.qcow2 2>&1",[
+                "draftName" => request("draftName"),
+                "masterName" => request("masterName")
         ]);
 
         if(str_contains($output, "ERROR")){
@@ -239,5 +231,44 @@ class VMController
         }
         else 
             return respond("Sanal makine başarıyla oluşturuldu",200);
+    }
+
+    function changeVmMemorySize(){
+
+        $output = Command::runSudo("virsh setmaxmem @{:vmName} @{:size} --config",[
+            "size" => request("size"),
+            "vmName" => request("vmName")
+        ]);
+        $output = Command::runSudo("virsh setmem @{:vmName} @{:size} --config",[
+            "size" => request("size"),
+            "vmName" => request("vmName")
+        ]);
+        return respond($output,200);
+    }
+
+    function showVmMemory(){
+        $output = Command::runSudo("virsh dommemstat @{:vmName} | grep 'actual' 2>&1",[
+            "vmName" => request("vmName")
+        ]);
+
+        $output = explode(" ", $output);
+       
+        return respond($output[1],200);
+        
+    }
+
+    function changeNumOfCpu(){
+        $output = Command::runSudo("virsh setvcpus --domain @{:vmName} --maximum @{:numOfCpu} --config",[
+            "vmName" => request("vmName"),
+            "numOfCpu" => request("numOfCpu")
+        ]);
+
+        $output = Command::runSudo("virsh setvcpus --domain @{:vmName} --count @{:numOfCpu} --config",[
+            "vmName" => request("vmName"),
+            "numOfCpu" => request("numOfCpu")
+        ]);
+    
+        return respond($output,200);
+        
     }
 }

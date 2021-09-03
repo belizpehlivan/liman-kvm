@@ -1,5 +1,38 @@
 <script>
+    function nodeInfo(){
+
+            var form = new FormData();
+            request(API('node_info'), form, function(response) {
+
+                data = JSON.parse(response).message;
+                console.log(data);
+                $("#nodeInfo").css("font-size", "15px");
+                $("#nodeInfo").text(data);
+                
+            }, function(response) {
+                        let error = JSON.parse(response);
+                        showSwal(error.message, 'error', 3000);
+            });
+    }
+
+    function diskInfo(){
+
+        var form = new FormData();
+            request(API('disk_info'), form, function(response) {
+
+                data = JSON.parse(response).message;
+                console.log(data);
+                $("#diskInfo").css("font-size", "15px");
+                $("#diskInfo").text(data);
+                
+            }, function(response) {
+                        let error = JSON.parse(response);
+                        showSwal(error.message, 'error', 3000);
+            });
+    }
+
     function checkConfiguration(){
+        
         var form = new FormData();
 
         request(API('check_configuration'), form, function(response) {
@@ -63,5 +96,7 @@
         }
   
     }
+
+
 
 </script>

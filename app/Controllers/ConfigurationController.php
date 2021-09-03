@@ -36,6 +36,17 @@ class ConfigurationController
         }
     }
 
+
+    function nodeInfo(){
+        $output = Command::runSudo("virsh nodeinfo");
+        return respond($output,200);
+    }
+    
+    function diskInfo(){
+        $output = Command::runSudo("df -h");
+        return respond($output,200);
+    }
+
     function updateConfigurationFile(){
         
         $ldap_host = request("ldaphost");

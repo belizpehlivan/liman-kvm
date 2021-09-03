@@ -1,4 +1,6 @@
 <script>
+var selectedVM;
+//import { getVmData} from '/liman/extensions/limankvm/views/vdi/scripts.blade.php';
     function getVM(){
 
         showSwal('{{__("Yükleniyor...")}}','info');
@@ -75,8 +77,7 @@
             showSwal(error.message, 'error', 5000);
         });
     }
-
-    var selectedVM;
+ 
 
     function showVmInfo(line){
         $("#vmInfoModal").modal('show');
@@ -123,7 +124,7 @@
     }
 
     function closeInfoModal(){
-        $("#machineInfoModal").modal('hide');
+        $("#vmInfoModal").modal('hide');
     }
 
     function createVM(){
@@ -151,12 +152,12 @@
 
     function createMasterImg(){
 
-        let title = document.getElementById("masterTitle").value;
-        let location = document.getElementById("vmName").value;
+        let draftName = document.getElementById("draftName").value;
+        let masterName = document.getElementById("masterName").value;
 
         var data = new FormData();
-        data.append("masterTitle", title);
-        data.append("vmName", location);
+        data.append("draftName", draftName);
+        data.append("masterName", masterName);
 
         request(API('create_master_image'), data, function(response) {
             response = JSON.parse(response)["message"];
@@ -165,6 +166,29 @@
             setTimeout(function(){
                 getVM();
             }, 3000);
+            /*
+            setTimeout(function(){
+                getVmData();
+            }, 3000);
+              */
+          
+        }, function(response) {
+                let error = JSON.parse(response);
+               // console.log(error.message);
+               // showSwal(error.message, 'error', 3000);
+            });
+    }
+    function changeVmMem(){
+
+        let size = document.getElementById("vmMemSize").value;
+        var data = new FormData();
+        data.append("size", size);
+        data.append("vmName", selectedVM);
+        console.log('vmName');
+        request(API('change_vm_memory_size'), data, function(response) {
+            response = JSON.parse(response)["message"];
+            showSwal("Başarılı", 'success', 3000);  
+
         }, function(response) {
                 let error = JSON.parse(response);
                 console.log(error.message);
@@ -172,5 +196,40 @@
             });
     }
 
-        
+    function showVmMemory(){
+
+        var data = new FormData();
+        data.append("vmName", selectedVM);
+
+        request(API('show_vm_memory'), data, function(response) {
+            response = JSON.parse(response)["message"];
+            $('#vmMemoryArea').html(response);
+        }, function(response) {
+                let error = JSON.parse(response);
+                console.log(error.message);
+                showSwal(error.message, 'error', 3000);
+            });
+    }
+
+
+    function changeVmCpuSize(){
+
+let vmCpuSize = document.getElementById("vmCpuSize").value;
+var data = new FormData();
+data.append("vmName", selectedVM);
+data.append("numOfCpu", vmCpuSize);
+
+request(API('change_num_of_cpu'), data, function(response) {
+    response = JSON.parse(response)["message"];
+    showSwal("Başarılı", 'success', 3000);  
+    $('#vmMemoryArea').html(response);
+    cpuInfo();
+}, function(response) {
+        let error = JSON.parse(response);
+        console.log(error.message);
+        showSwal(error.message, 'error', 3000);
+    });
+}
 </script>
+
+

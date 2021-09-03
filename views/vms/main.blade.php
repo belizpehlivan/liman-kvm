@@ -1,6 +1,6 @@
 @component("modal-component", [
     "id" => "vmInfoModal",
-    "title" => "CPU Bilgileri",
+    "title" => "Makine Bilgileri",
     "footer" => 
             [
                 "class" => "btn-success",
@@ -15,15 +15,36 @@
                 {{__('Cpu Bilgileri')}}</a>
                 <a class="nav-link" onclick="diskSize()" id="v-pills-diskSize-tab" data-toggle="pill" href="#v-pills-diskSize" role="tab" aria-controls="v-pills-diskSize" aria-selected="false">
                 {{__('Disk Boyutu')}}</a>
+                <a class="nav-link"  onclick="showVmMemory()" id="v-pills-vmMemory-tab" data-toggle="pill" href="#v-pills-vmMemory" role="tab" aria-controls="v-pills-vmMemory" aria-selected="false">
+                {{__('Memory')}}</a>
             </div>
         </div>
         <div class="col-9">
             <div class="tab-content" id="v-pills-tabContent">
                 <div class="tab-pane fade show active" id="v-pills-cpuInfo" role="tabpanel" aria-labelledby="v-pills-cpuInfo-tab">
                     <div class="table-responsive" id="cpuInfoTable"></div>
+                    <form>
+                        <div class="form-group">
+                            <label for="vmCpuSize">{{__('Change Cpu Core')}}</label>
+                            <input class="form-control" id="vmCpuSize">
+                        </div>
+                        <button class="btn btn-primary" onclick="changeVmCpuSize()" >{{__("Güncelle")}}</button>
+                    </form>
                 </div>
                 <div class="tab-pane fade" id="v-pills-diskSize" role="tabpanel" aria-labelledby="v-pills-diskSize-tab">
                         <div class="table-responsive" id="diskSizeTable"></div>
+                </div>
+                <div class="tab-pane fade" id="v-pills-vmMemory" role="tabpanel" aria-labelledby="v-pills-vmMemory-tab">
+                    <form>
+                        <label for="vmMemoryArea">{{__('Actual Size:')}}</label>
+                        <p id="vmMemoryArea"></p>
+                        <div class="form-group">
+                            <label for="vmMemSize">{{__('Change Memory Size')}}</label>
+                            <input class="form-control" id="vmMemSize">
+                        </div>
+                        <button class="btn btn-primary" onclick="changeVmMem()" >{{__("Güncelle")}}</button>
+                    </form>
+                    
                 </div>
             </div>
         </div>
@@ -80,12 +101,12 @@
        
             <form>
                 <div class="form-group">
-                    <label for="masterTitle">{{__('Title')}}</label>
-                    <input class="form-control" id="masterTitle" >
+                    <label for="draftName">{{__('Draft Name')}}</label>
+                    <input class="form-control" id="draftName" >
                 </div>
                 <div class="form-group">
-                    <label for="vmName">{{__('Disk Location')}}</label>
-                    <input class="form-control" id="vmName">
+                    <label for="masterName">{{__('Master Image Name')}}</label>
+                    <input class="form-control" id="masterName">
                 </div>
             </form>
  @endcomponent
