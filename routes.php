@@ -27,6 +27,7 @@ return [
     "update_configuration_file" => "ConfigurationController@updateConfigurationFile",
     "node_info" => "ConfigurationController@nodeInfo",
     "disk_info" => "ConfigurationController@diskInfo",
-    "list_images" => "ImagesController@listImages"
+    "list_images" => "ImagesController@listImages",
+    "list_isos" => "IsosController@listIsos"
     
 ];

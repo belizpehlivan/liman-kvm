@@ -19,6 +19,11 @@
             <i class="fas fa-desktop"></i> {{ __("Images") }}
         </a>
     </li>
+    <li class="nav-item">
+        <a class="nav-link" onclick="listIsos();" href="#isos" data-toggle="tab">
+            <i class="fas fa-desktop"></i> {{ __("Iso Dosyaları") }}
+        </a>
+    </li>
 </ul>
 
 <div class="tab-content">
@@ -35,6 +40,10 @@
     <div id="images" class="tab-pane">
         
         @include('images.main')
+    </div>
+    <div id="isos" class="tab-pane">
+        
+        @include('isos.main')
     </div>
 </div>
 
