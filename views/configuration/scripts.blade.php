@@ -43,7 +43,6 @@
             request(API('node_info'), form, function(response) {
 
                 data = JSON.parse(response).message;
-                console.log(data);
                 $("#nodeInfo").css("font-size", "15px");
                 $("#nodeInfo").text(data);
                 
@@ -59,7 +58,6 @@
             request(API('disk_info'), form, function(response) {
 
                 data = JSON.parse(response).message;
-                console.log(data);
                 $("#diskInfo").css("font-size", "15px");
                 $("#diskInfo").text(data);
                 

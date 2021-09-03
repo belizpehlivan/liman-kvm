@@ -7,7 +7,6 @@
     function getVmData(){
         var form = new FormData();
         request(API('get_vm_data'), form, function(response) {
-            console.log("test");
             response = JSON.parse(response);
             $("#select2").select2({
                 data: response["message"]
