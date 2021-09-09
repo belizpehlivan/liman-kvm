@@ -72,7 +72,7 @@ var selectedVM;
         let name = line.querySelector("#name").innerHTML;
         form.append("name",name);
         request(API('delete_machine'), form, function(response) {
-            console.log(response);
+           // getVmData();
             getVM();
         }, function(error) {
             showSwal(error.message, 'error', 5000);
@@ -200,9 +200,8 @@ var selectedVM;
                 getVM();
             }, 3000);
           
-            setTimeout(() => {
-                getVmData();
-            }, 5000);
+              //  getVmData();
+            
         }, function(response) {
                 let error = JSON.parse(response);
                 console.log(error.message);
@@ -224,22 +223,14 @@ var selectedVM;
             let output = JSON.parse(response).message;
             $('#masterImgModal').modal("hide"); 
             showSwal(output, 'success', 3000);
-            
-           // $("#install").attr("disabled","true");           
-           // $('#masterVmTaskModal').modal({backdrop: 'static', keyboard: false})
-           // $('#masterVmTaskModal').find('.modal-body').html(output);
-           // $('#masterVmTaskModal').modal("show");     
             Swal.close();
             
+            getVmData();
+          
             setTimeout(function(){
                 getVM();
             }, 3000);
-            /*
-            setTimeout(function(){
-                getVmData();
-            }, 3000);
-              */
-          
+           
         }, function(response) {
                 let error = JSON.parse(response);
                 console.log(error.message);

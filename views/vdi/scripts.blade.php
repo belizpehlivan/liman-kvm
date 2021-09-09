@@ -1,24 +1,23 @@
 <script>
-    $(document).ready(function(){
-        getVmData();
-    });
+    let getVMs = (response) => { 
+        $("#select2").select2({
+            data: response
+        })
+    }
 
     function getVmData(){
         var form = new FormData();
         request(API('get_vm_data'), form, function(response) {
-            response = JSON.parse(response);
-            console.log(response["message"]);
-            $("#select2").select2({
-                data: response["message"]
-            })
+            response = JSON.parse(response)['message'];
+            $("#select2").empty();
+            getVMs(response);
         }, function(response) {
             let error = JSON.parse(response);
             Swal.close();
             showSwal(error.message, 'error', 3000);
         });
     }
-
-   
+    
     function listVdi(){
         showSwal('{{__("Yükleniyor...")}}','info');
         let ip = "{{extensionDb('ip')}}"

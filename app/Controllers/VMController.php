@@ -256,26 +256,6 @@ class VMController
         else 
             return respond("Başarıyla Oluşturuldu",200);
     }
-/*
-    function createMasterImage(){
-        //request("vmName");
-        //request("masterTitle");
-        'onFail' => 'onTaskFail',
-        'onSuccess' => 'onTaskSuccess', 
-
-        return respond(
-            view('task', [
-                'tasks' => [
-                   0 => [
-                        'name' => 'masterImageTask',
-                        'attributes' => []
-                    ]
-                ]
-            ]),
-            200
-        );
-
-    }*/
 
     function changeVmMemorySize(){
 

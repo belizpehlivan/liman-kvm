@@ -10,7 +10,7 @@
         </a>
     </li>
     <li class="nav-item gizli">
-        <a class="nav-link" onclick="listVdi();" href="#vdi" data-toggle="tab">
+        <a class="nav-link" onclick="listVdi();getVmData();" href="#vdi" data-toggle="tab">
             <i class="fas fa-desktop"></i> {{ __("VDI") }}
         </a>
     </li>
