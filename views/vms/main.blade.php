@@ -111,12 +111,16 @@
        
             <form>
                 <div class="form-group">
-                    <label for="draftName">{{__('Draft Name')}}</label>
+                    <label for="draftName">{{__('Draft')}}</label>
                     <input class="form-control" id="draftName" >
+                    <small class='form-text text-muted'>{{__('Kopyalanacak makine ismini yazınız.')}}</small>
+
                 </div>
                 <div class="form-group">
-                    <label for="masterName">{{__('Master Image Name')}}</label>
+                    <label for="masterName">{{__('Master Image')}}</label>
                     <input class="form-control" id="masterName">
+                    <small class='form-text text-muted'>{{__('Oluşturulacak makine ismini yazınız.')}}</small>
+
                 </div>
             </form>
  @endcomponent
@@ -128,7 +132,10 @@
 @endcomponent
 
 
-<div class="table-responsive" id="vmsTable"></div>
+    <div class="table-responsive" id="vmsTable"></div>
+
+
+
 
 @include("vms.scripts")
 

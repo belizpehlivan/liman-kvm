@@ -108,8 +108,9 @@ var selectedVM;
  
 
     function showVmInfo(line){
-        $("#vmInfoModal").modal('show');
         selectedVM = line.querySelector("#name").innerHTML;
+        $("#vmInfoModal").find('.modal-title').text(selectedVM);
+        $("#vmInfoModal").modal('show');
         cpuInfo();
         $('#v-pills-cpuInfo-tab').tab('show');
     }

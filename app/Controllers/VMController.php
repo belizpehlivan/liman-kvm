@@ -231,7 +231,10 @@ class VMController
         Command::runSudo("systemctl start libvirtd"); 
        
      
-        if(str_contains($output, "ERROR")){
+        if(str_contains($output, "in use")){
+            return respond("Bu isimde bir kullanıcı zaten mevcut.",201);
+        }
+        else if(str_contains($output, "ERROR")){
             return respond($output,201);
         }
         else 
@@ -250,7 +253,10 @@ class VMController
         ]);
         Command::runSudo("systemctl start libvirtd"); 
 
-        if(str_contains($output, "ERROR")){
+        if(str_contains($output, "in use")){
+            return respond("Bu isimde bir kullanıcı zaten mevcut.",201);
+        }
+        else if(str_contains($output, "ERROR")){
             return respond($output,201);
         }
         else 
