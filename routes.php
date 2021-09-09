@@ -9,6 +9,8 @@ return [
     "shutdown_machine" => "VMController@shutdownMachine",
     "destroy_machine" => "VMController@destroyMachine",
     "delete_machine" => "VMController@deleteMachine",
+    "suspend_machine" => "VMController@suspendMachine",
+    "resume_machine" => "VMController@resumeMachine",
     "create_vm" => "VMController@createVM",
     "get_vm_data" => "VMController@getVmData",
     "list_cpu_info" => "VMController@listCpuInfo",
@@ -17,6 +19,7 @@ return [
     "change_vm_memory_size" => "VMController@changeVmMemorySize",
     "show_vm_memory" => "VMController@showVmMemory",
     "change_num_of_cpu" => "VMController@changeNumOfCpu",
+    "vm_port" => "VMController@VmPort",
 
     "assign_vdi" => "ApiController@assignVDI",
     "list_vdi" => "ApiController@listVDI",

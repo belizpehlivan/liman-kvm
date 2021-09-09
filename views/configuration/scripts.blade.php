@@ -1,10 +1,7 @@
 <script>
     function confFunctions(){
         checkConfiguration();
-        nodeInfo();
-        diskInfo();
-        nodecpustats();
-        nodememstats();
+       
     }
 
     function nodecpustats(){
@@ -91,6 +88,11 @@
                 $('#ldapusername').val(data[2]);
                 $('#ldappassword').val(data[3]);
                 $('#hostip').val(data[4]);
+
+                nodeInfo();
+                diskInfo();
+                nodecpustats();
+                nodememstats();
 
             }
         }, function(response) {

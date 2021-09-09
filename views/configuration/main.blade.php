@@ -28,7 +28,7 @@
             </div>
         </div>
     </div>
-    <div class="col-sm-3">
+    <div class="col-sm-3 gizli">
         <div class="card">
             <div class="card-body">
                 <label style="font-size:15px;">Disk Info</label>
@@ -42,7 +42,7 @@
             </div>
         </div>
     </div>
-    <div class="col-sm-3">
+    <div class="col-sm-3 gizli">
         <div class="card">
             <div class="card-body">
                 <label style="font-size:15px;">Node Info</label>

@@ -1,5 +1,4 @@
 <script>
- //export { getVmData };
     $(document).ready(function(){
         getVmData();
     });
@@ -8,6 +7,7 @@
         var form = new FormData();
         request(API('get_vm_data'), form, function(response) {
             response = JSON.parse(response);
+            console.log(response["message"]);
             $("#select2").select2({
                 data: response["message"]
             })
@@ -17,6 +17,7 @@
             showSwal(error.message, 'error', 3000);
         });
     }
+
    
     function listVdi(){
         showSwal('{{__("Yükleniyor...")}}','info');

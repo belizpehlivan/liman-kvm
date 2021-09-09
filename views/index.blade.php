@@ -6,7 +6,7 @@
     </li>
     <li class="nav-item gizli">
         <a class="nav-link" onclick="getVM();" href="#vms" data-toggle="tab">
-            <i class="fas fa-tasks"></i> {{ __("Sanal Makineler") }}
+            <i class="fas fa-desktop"></i> {{ __("Sanal Makineler") }}
         </a>
     </li>
     <li class="nav-item gizli">
@@ -14,14 +14,14 @@
             <i class="fas fa-desktop"></i> {{ __("VDI") }}
         </a>
     </li>
-    <li class="nav-item">
+    <li class="nav-item gizli">
         <a class="nav-link" onclick="listImages();" href="#images" data-toggle="tab">
-            <i class="fas fa-desktop"></i> {{ __("Images") }}
+            <i class="fas fa-compact-disc"></i> {{ __("Images") }}
         </a>
     </li>
-    <li class="nav-item">
+    <li class="nav-item gizli">
         <a class="nav-link" onclick="listIsos();" href="#isos" data-toggle="tab">
-            <i class="fas fa-desktop"></i> {{ __("Iso Dosyaları") }}
+            <i class="fas fa-file"></i> {{ __("Iso Dosyaları") }}
         </a>
     </li>
 </ul>
@@ -50,8 +50,14 @@
 <script>
 
     if (location.hash ==="") {
-        confFunctions();
+        checkConfiguration();
     }
+/*
+    $(document).ready(function(){
+        getVmData();
+
+    });*/
+
 
     function ldapCheck()
     {

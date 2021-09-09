@@ -65,7 +65,7 @@ class VMController
                 ],
                 "Yeniden Başlat" => [
                     "target" => "rebootMachine",
-                    "icon" => "fas fa-undo"
+                    "icon" => "fas fa-sync-alt"
                 ],
                 "Kapat" => [
                     "target" => "shutdownMachine",
@@ -73,12 +73,21 @@ class VMController
                 ],
                 "Zorla Kapat" => [
                     "target" => "destroyMachine",
-                    "icon" => "fas fa-power-off"
+                    "icon" => "fas fa-window-close"
                 ],
                 "Sil" => [
                     "target" => "deleteMachine",
                     "icon" => "fas fa-trash"
+                ],
+                "Suspend" => [
+                    "target" => "suspendMachine",
+                    "icon" => "fas fa-minus-circle"
+                ],
+                "Resume" => [
+                    "target" => "resumeMachine",
+                    "icon" => "fas fa-play"
                 ]
+               
                
             ]
         ]);
@@ -124,8 +133,7 @@ class VMController
     }
     function destroyMachine(){
         $output = Command::runSudo("virsh destroy @{:name} 2>&1",[
-                "name" => request("name")
-        ]);
+                "name" => request("name") ]);
 
         if(str_contains($output,"error")){
             return respond($output,201);
@@ -140,6 +148,18 @@ class VMController
         Command::runSudo("virsh pool-refresh default",["name" => request("name")]);
         Command::runSudo("virsh vol-delete --pool default @{:name}.qcow2",["name" => request("name")]);
        Command::runSudo("rm -rf /var/lib/libvirt/images/@{:name}.qcow2",["name" => request("name")]);
+        return respond($output,200);
+    }
+
+    function suspendMachine(){
+
+        Command::runSudo("virsh suspend @{:name} 2> /dev/null",["name" => request("name")]);
+        return respond($output,200);
+    }
+
+    function resumeMachine(){
+
+        Command::runSudo("virsh resume @{:name} 2> /dev/null",["name" => request("name")]);
         return respond($output,200);
     }
 
@@ -208,6 +228,8 @@ class VMController
             "location" => request("location")
 
         ]);
+        Command::runSudo("systemctl start libvirtd"); 
+       
      
         if(str_contains($output, "ERROR")){
             return respond($output,201);
@@ -217,6 +239,7 @@ class VMController
     }
 
     function createMasterImage(){
+
         Command::runSudo("virsh destroy @{:draftName}",[
             "draftName" => request("draftName")
         ]); 
@@ -225,6 +248,7 @@ class VMController
                 "draftName" => request("draftName"),
                 "masterName" => request("masterName")
         ]);
+        Command::runSudo("systemctl start libvirtd"); 
 
         if(str_contains($output, "ERROR")){
             return respond($output,201);
@@ -275,6 +299,17 @@ class VMController
        
         return respond($output[1],200);
         
+    }
+
+    function VmPort(){
+        $output = Command::runSudo("virsh qemu-monitor-command @{:vmName} --hmp info spice | grep 'address' 2>&1",[
+            "vmName" => request("name")
+        ]);
+        $pos = strripos($output, ":");
+        $output = substr($output, $pos+1);
+        
+       
+        return respond($output,200);
     }
 
     function changeNumOfCpu(){
