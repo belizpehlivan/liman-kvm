@@ -1,24 +1,25 @@
 # LIMAN-KVM
 Liman-kvm eklentisi KVM ile oluşturduğunuz sanallaştırılmış ortamı yönetme imkanı sağlar. Sanallaştırma hakkında daha fazla bilgi edinmek isterseniz linkten yazıma ulaşabilirsiniz. 
 
+[Liman-Kvm Eklentisi Kurulumu](docs/CONTRIBUTING.md)
+
 ## Liman-Kvm Eklentisi Kurulumu
 
 ### Eklentinin Limana Yüklenmesi
 
-1. Görselde belirtildiği gibi kodu zip dosyası halinde indiriyoruz.
-
+1. Görselde belirtildiği gibi kodu zip dosyası indirilebilir.
 ![](https://github.com/belizpehlivan/liman-kvm/blob/main/images/5b-zip.png)
 
-2. Sol alt kısımda sistem ayarları butonuna tıkladıktan sonra eklentiyi eklemek için eklentiler sekmesinde yeşil artı butonuna basıyoruz.
+2. Sol alt kısımda sistem ayarları butonuna tıkladıktan sonra eklentiyi limana eklemek için eklentiler sekmesinde yeşil artı butonuna basılır.
 
 ![](https://github.com/belizpehlivan/liman-kvm/blob/main/images/1f.png)
 
-3. Açılan pencerede indirdiğimiz zip dosyasını seçip yüklüyoruz.
+3. Açılan pencerede indirilen zip dosyası seçilip yüklenmeli.
 
 ![](https://github.com/belizpehlivan/liman-kvm/blob/main/images/1b.png)
 
 ### Sunucuyu Ekleme
-1. Tüm Sunucuları Gör sekmesine gelip sunucu ekle butonuna basıyoruz.
+1. Tüm Sunucuları Gör sekmesine gelip sunucu ekle butonuna basın.
 
 ![](https://github.com/belizpehlivan/liman-kvm/blob/main/images/1g.png)
 
@@ -119,35 +120,59 @@ Draft makinede herhangi bir değişiklik yapılmayacaktır, sadece klonlama işl
 ![](https://github.com/belizpehlivan/liman-kvm/blob/main/images/4l.png)
 
 
-
-
-![](https://github.com/belizpehlivan/liman-kvm/blob/main/images/2e.png)
-
-![](https://github.com/belizpehlivan/liman-kvm/blob/main/images/3a.png)
-
-
 ### Disk Görüntüleri
 
 Sanal makine oluşturulurken sanal sabit disk sürücüsü oluşturulur, bu disk görüntülerini de qcow2 dosya formatında tutuyoruz. Makine silindiğinde ona ait disk görüntüsü de silinir.
 
-![](https://github.com/belizpehlivan/liman-kvm/blob/main/images/6b.png)
+![](https://github.com/belizpehlivan/liman-kvm/blob/main/images/diskimage.png)
 
 
 ### Iso Dosyaları
 
+Makine için vereceğiniz iso dosyalarını görüntüleyebilirsiniz.
 
 ![](https://github.com/belizpehlivan/liman-kvm/blob/main/images/6a.png)
 
 
+### VDI Atama
 
+Vdi ata butonuna bastıktan sonra;
 
-![](https://github.com/belizpehlivan/liman-kvm/blob/main/images/4d.png)
+Kullanıcıya atamak istediğimiz sanal makineyi menüden seçin.
 
-
+Domaindeki kullanıcınızın adını girin ve kaydedin.
 
 ![](https://github.com/belizpehlivan/liman-kvm/blob/main/images/5b.png)
 
+## Sanal Uygulama Yöneticisi Arayüzünden VDI Erişimi
+
+Adres çubuğuna `KvmSunucusuIP:5000` yazılarak giriş ekranına ulaşılır.
+Domaindeki kullanıcı adı ve şifresi ile giriş yaptıktan sonra kullanıcıya atanmış olan vdiları görebilirsiniz.
+
 ![](https://github.com/belizpehlivan/liman-kvm/blob/main/images/5c.png)
+
+![](https://github.com/belizpehlivan/liman-kvm/blob/main/images/arayuz.png)
+
+Açılmak istenen sanal masaüstüne tıklandığında .vv uzantılı bir dosya indirilir. Bu dosya sanal makinenin grafik konsoluna erişebilmek için gerekli konfigürasyon ayarlarını içerir. Konsolu görüntüleyebilmek için öncelikle virt-viewer kurulumu yapılmalıdır.
+
+> Virt-viewer, sanal bir makinenin grafik konsolunu görüntülemek için minimal bir araçtır. Konsola VNC veya SPICE protokolü kullanılarak erişilir.
+
+ [Link](https://command-not-found.com/remote-viewer) üzerinden sisteminizin dosya tabanına uygun komutu seçerek kurulum yapılabilir.
+
+Virt-viewer kurulumun ardından indirilen .vv dosyası açıldığında konsola ulaşılabilir.
+
+![](https://github.com/belizpehlivan/liman-kvm/blob/main/images/vv.png)
+
+Kurulum tamamlayın. Ardından makine domaine alınabilir. Böylelikle makineye oluşturulan yerel kullanıların yanı sıra domaindeki kullanıcılar ile de giriş yapılabilir.
+
+![](https://github.com/belizpehlivan/liman-kvm/blob/main/images/6d.png)
+
+
+
+
+
+
+
 
 
 
