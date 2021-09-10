@@ -1,8 +1,6 @@
 # LIMAN-KVM
 Liman-kvm eklentisi KVM ile oluşturduğunuz sanallaştırılmış ortamı yönetme imkanı sağlar. Sanallaştırma hakkında daha fazla bilgi edinmek isterseniz linkten yazıma ulaşabilirsiniz. 
 
-[Liman-Kvm Eklentisi Kurulumu](docs/CONTRIBUTING.md)
-
 ## Liman-Kvm Eklentisi Kurulumu
 
 ### Eklentinin Limana Yüklenmesi
