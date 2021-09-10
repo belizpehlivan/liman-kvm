@@ -40,7 +40,7 @@ Ldap kullanılarak domaindeki kullanıcılara sanal masaüstü(vdi) atama işlem
 
 ### 2.1. Eklentinin Limana Yüklenmesi
 
-- Görselde belirtildiği gibi eklenti zip dosyası şeklinde indirilmeli.
+- Görselde belirtildiği gibi [eklenti](https://github.com/belizpehlivan/liman-kvm) zip dosyası şeklinde indirilmeli.
 ![](https://github.com/belizpehlivan/liman-kvm/blob/main/images/5b-zip.png)
 
 - Sol alt kısımda sistem ayarları butonuna tıkladıktan sonra eklentiyi limana eklemek için eklentiler sekmesinde yeşil artı butonuna basalım.
