@@ -5,9 +5,25 @@ KVM, Linux tabanlı sistemler için geliştirilmiş bir sanallaştırma altyapı
 Liman-KVM eklentisi,
 - Masaüstü sanallaştırma ortamını yönetme imkanı sunar.
 - Eklenti ile yeni sanal makine oluşturabilir, makine ayarlarını düzenleyebilir ve yönetebilirsiniz.
-- Etki alanınız ile bağlantı kurup, kullanıcılara sanal masaüstü atayabilirsiniz. 
+- Etki alanınız ile bağlantı kurup, kullanıcılara sanal masaüstü(virtual desktop infrastructure) atayabilirsiniz. 
 
-## KVM Kurulumu
+1. KVM Kurulumu
+2. Liman-Kvm Eklentisi Kurulumu
+   - Eklentinin Limana Yüklenmesi
+   - Sunucu Ekleme
+   - Eklentinin Sunucuya Eklenmesi
+   
+3. Liman-Kvm Kullanımı
+   - Sanal Makineler 
+      Sanal Makine Oluşturma
+      Varolan Sanal Makineden Kopya Oluşturma 
+   - Disk Görüntüleri 
+   - Iso Dosyaları
+   - VDI Atama
+ 
+4. Sanal Uygulama Yöneticisi Arayüzünden VDI Erişimi
+
+## 1. KVM Kurulumu
 Öncelikle bilgisayarımıza KVM kurulumu yapmalıyız.
 
 KVM kullanabilmemiz için sanallaştırma teknolojisini destekleyen Intel(Vtx) üzerinde Linux çekirdeği çalıştıran bir x86 makinesine veya AMD-V teknolojisine sahip işlemciye ihtiyacımız var.
@@ -16,75 +32,56 @@ Bilgisayarımızın sanallaştırmayı destekleyip desteklemediğini bu [link](h
 
 Ben Debian işletim sistemine sahip bir bilgisayar üzerinde kurulum yaptım. Kurulum için [linkteki](https://www.server-world.info/en/note?os=Debian_10&p=kvm&f=1) adımları takip ederek KVM kurulumunu yapabilirsiniz.
 
-Kurulumu yaptıktan sonra 
-...
-[link](https://github.com/StarBuckR/authpy) üzerinden kodu kvm kurulu makinenize indirdikten sonra, açıklamalarda bulunan adımları /path/to/authpy içinde root kullanıcısında tamamlamanız gerekmektedir.
+Ldap kullanılarak domaindeki kullanıcılara sanal masaüstü(vdi) atama işlemi ve atanan masaüstlerinin arayüzden domain kullanıcılarıyla giriş yapılarak ulaşımı [Rıdvan Tülemen](https://github.com/StarBuckR)'in yazdığı apiler yardımı ile yapılmaktadır. [Linke](https://github.com/StarBuckR/authpy) giderek kodu, kvm kurulu makinenize indirdikten sonra, açıklamalarda bulunan adımları /path/to/authpy içinde root kullanıcısında tamamlamanız gerekmektedir. 
 
+## 2. Liman-Kvm Eklentisi Kurulumu
 
-1. Liman-Kvm Eklentisi Kurulumu
-   - Eklentinin Limana Yüklenmesi
-   - Sunucu Ekleme
-   - Eklentinin Sunucuya Eklenmesi
-   
-2. Liman-Kvm Kullanımı
-   - Sanal Makineler 
-      Sanal Makine Oluşturma
-      Varolan Sanal Makineden Kopya Oluşturma 
-   - Disk Görüntüleri 
-   - Iso Dosyaları
-   - VDI Atama
- 
-3. Sanal Uygulama Yöneticisi Arayüzünden VDI Erişimi
+### 2.1. Eklentinin Limana Yüklenmesi
 
-
-## 1. Liman-Kvm Eklentisi Kurulumu
-
-### Eklentinin Limana Yüklenmesi
-
-1. Görselde belirtildiği gibi eklenti zip dosyası şeklinde indirilmeli.
+- Görselde belirtildiği gibi eklenti zip dosyası şeklinde indirilmeli.
 ![](https://github.com/belizpehlivan/liman-kvm/blob/main/images/5b-zip.png)
 
-2. Sol alt kısımda sistem ayarları butonuna tıkladıktan sonra eklentiyi limana eklemek için eklentiler sekmesinde yeşil artı butonuna basalım.
+- Sol alt kısımda sistem ayarları butonuna tıkladıktan sonra eklentiyi limana eklemek için eklentiler sekmesinde yeşil artı butonuna basalım.
 
 ![](https://github.com/belizpehlivan/liman-kvm/blob/main/images/1f.png)
 
-3. Açılan pencerede indirilen zip dosyasını seçip yükleyelim.
+- Açılan pencerede indirilen zip dosyasını seçip yükleyelim.
 
 ![](https://github.com/belizpehlivan/liman-kvm/blob/main/images/1b.png)
 
-### Sunucu Ekleme
+### 2.2. Sunucu Ekleme
 
-1. Tüm Sunucuları Gör sekmesine gelip 'Sunucu Ekle' butonuna basıyoruz..
+- Tüm Sunucuları Gör sekmesine gelip 'Sunucu Ekle' butonuna basıyoruz..
 
 ![](https://github.com/belizpehlivan/liman-kvm/blob/main/images/1g.png)
 
-2. Bağlantı Bilgileri ayarlarında IP adresine Kvm Kurulu sunucunun ipsi ve porta 22 yazılmalı. Ldap bağlantısını kontrol etmek için 'Bağlantıyı Kontrol Et' butonunu kullanabiliriz.
+- Bağlantı Bilgileri ayarlarında IP adresine Kvm Kurulu sunucunun ipsi ve porta 22 yazılmalı. Ldap bağlantısını kontrol etmek için 'Bağlantıyı Kontrol Et' butonunu kullanabiliriz.
 
 ![](https://github.com/belizpehlivan/liman-kvm/blob/main/images/1a-sunucu.png) 
 
-3. Genel Ayarlar sekmesinde sunucunuza dilediğiniz ismi verebilirsiniz. Bulunduğunuz şehri girip, işetim sistemi olarak GNU/Linux seçeneğini işaretliyoruz. Ayarları onayladıktan sonra Anahtar kısmına geçiyoruz.
+- Genel Ayarlar sekmesinde sunucunuza dilediğiniz ismi verebilirsiniz. Bulunduğunuz şehri girip, işetim sistemi olarak GNU/Linux seçeneğini işaretliyoruz. Ayarları onayladıktan sonra Anahtar kısmına geçiyoruz.
 
 ![](https://github.com/belizpehlivan/liman-kvm/blob/main/images/1c.png)
 
-4. Anahtar türünü SSH seçiyoruz. Sunucumuzda bulunan kullanıcı adı ve şifeyi girip portu 22 olarak bırakıyoruz. Ayarları onaylayıp Özet kısmında bilgilerimizi kontrol ettikten sonra sunucumuzu ekleyebiliriz.
+- Anahtar türünü SSH seçiyoruz. Sunucumuzda bulunan kullanıcı adı ve şifeyi girip portu 22 olarak bırakıyoruz. Ayarları onaylayıp Özet kısmında bilgilerimizi kontrol ettikten sonra sunucumuzu ekleyebiliriz.
 
 ![](https://github.com/belizpehlivan/liman-kvm/blob/main/images/1server.png)
 
 ![](https://github.com/belizpehlivan/liman-kvm/blob/main/images/2server.png)
 
-5. Karşımıza çıkan ekranda sunucumuzun bilgilerini görebiliriz.
+- Karşımıza çıkan ekranda sunucumuzun bilgilerini görebiliriz.
 
 ![](https://github.com/belizpehlivan/liman-kvm/blob/main/images/1e.png)
 
 Şimdi eklentiler sekmesinden eklentiyi sunucuya ekleyelim.
 
-### Eklentinin Sunucuya Eklenmesi
+### 2.3. Eklentinin Sunucuya Eklenmesi
 
-1. 'Tüm Sunucuları Gör' butonuna tıklayıp, açılan ekranda kvm sunucumuzu seçiyoruz.
+- 'Tüm Sunucuları Gör' butonuna tıklayıp, açılan ekranda kvm sunucumuzu seçiyoruz.
 
 ![](https://github.com/belizpehlivan/liman-kvm/blob/main/images/2a.png)
 
-2. Eklentiler sekmesinde artı butonuna tıkladıktan sonra açılan pencerede Liman-Kvm eklentisini seçip ekliyoruz.
+- Eklentiler sekmesinde artı butonuna tıkladıktan sonra açılan pencerede Liman-Kvm eklentisini seçip ekliyoruz.
 ![](https://github.com/belizpehlivan/liman-kvm/blob/main/images/2b.png)
 
 ![](https://github.com/belizpehlivan/liman-kvm/blob/main/images/2c.png) 
@@ -93,7 +90,7 @@ Kurulumu yaptıktan sonra
 
 Sol tarafta Sunucular altında kvm sunucumuzu seçip eklentiyi kullanmaya başlayabiliriz.
 
-## 2. Liman-Kvm Kullanımı
+## 3. Liman-Kvm Kullanımı
 
 Eklentiyi ekledikten sonra yapılacak ilk adımlardan biri, eklenti ayarlarına tıklayıp kvm sunucumuzun ip adresini yazıp kaydetmek.
 
@@ -113,7 +110,7 @@ Yan tarafta Kvm sunucusunun donanım bilgilerini inceleyebilirsiniz.
 
 ![](https://github.com/belizpehlivan/liman-kvm/blob/main/images/1d.png)
 
-### Sanal Makineler
+### 3.1. Sanal Makineler
 
 Sanal Makineler sekmesinde oluşturulan sanal makineleri görüntüleyebilir, bilgilerini güncelleyebilir ve yönetebilirsiniz.
 
@@ -122,7 +119,7 @@ Sanal Makineler sekmesinde oluşturulan sanal makineleri görüntüleyebilir, bi
 #### Sanal Makine Oluşturma
 
 Birlikte yeni bir sanal makine oluşturalım.
--
+
 ![](https://github.com/belizpehlivan/liman-kvm/blob/main/images/5a.png)
 
 Yeni butonuna tıklayıp oluşturmak istediğimiz makine bilgilerini giriyoruz. 
@@ -153,20 +150,20 @@ Draft makinede herhangi bir değişiklik yapılmayacaktır, sadece klonlama işl
 
 ![](https://github.com/belizpehlivan/liman-kvm/blob/main/images/4l.png)
 
-### Disk Görüntüleri
+### 3.2. Disk Görüntüleri
 
 Sanal makine oluşturulurken sanal sabit disk sürücüsü oluşturulur, bu disk görüntülerini de qcow2 dosya formatında tutuyoruz. Makine silindiğinde ona ait disk görüntüsü de silinir.
 
 ![](https://github.com/belizpehlivan/liman-kvm/blob/main/images/diskimage.png)
 
-### Iso Dosyaları
+### 3.3 Iso Dosyaları
 
 Makine için vereceğiniz iso dosyalarını görüntüleyebilirsiniz.
 
 ![](https://github.com/belizpehlivan/liman-kvm/blob/main/images/6a.png)
 
 
-### VDI Atama
+### 3.4. VDI Atama
 
 Vdi ata butonuna bastıktan sonra;
 
@@ -176,7 +173,7 @@ Sanal masaüstünü domaindeki atamak istediğimiz kullanıcının adını girip
 
 ![](https://github.com/belizpehlivan/liman-kvm/blob/main/images/5b.png)
 
-## 3. Sanal Uygulama Yöneticisi Arayüzünden VDI Erişimi
+## 4. Sanal Uygulama Yöneticisi Arayüzünden VDI Erişimi
 
 Adres çubuğuna `KvmSunucusIP:5000` yazılarak giriş ekranına ulaşılır.
 Domaindeki kullanıcı adı ve şifresi ile giriş yaptıktan sonra kullanıcıya atanmış olan sanal masaüstlerini görebilirsiniz.
@@ -184,6 +181,11 @@ Domaindeki kullanıcı adı ve şifresi ile giriş yaptıktan sonra kullanıcıy
 ![](https://github.com/belizpehlivan/liman-kvm/blob/main/images/5c.png)
 
 ![](https://github.com/belizpehlivan/liman-kvm/blob/main/images/arayuz.png)
+
+Sanal masaüstlerinden birine tıklamadan önce makineyi liman arayüzünde kvm eklentisine giderek, sanal makineler sekmesinde ilgili makineyi başlatmalıyız.
+
+Aynı zamanda flask uygulaması da çalışır durumda olmalı.
+[authpy](https://github.com/StarBuckR/authpy) içindeki açıklamaları takip ediniz.
 
 Açılmak istenen sanal masaüstüne tıklandığında .vv uzantılı bir dosya indirilir. Bu dosya sanal makinenin grafik konsoluna erişebilmek için gerekli konfigürasyon ayarlarını içerir. Konsolu görüntüleyebilmek için öncelikle virt-viewer kurulumu yapılmalıdır.
 
