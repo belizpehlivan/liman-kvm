@@ -40,9 +40,9 @@ Liman-kvm eklentisi KVM ile oluşturduğunuz sanallaştırılmış ortamı yöne
 
 ![](https://github.com/belizpehlivan/liman-kvm/blob/main/images/1e.png)
 
-Şimdi eklentiler sekmesinden eklentiyi sunucuya ekleyebiliriz.
+Şimdi eklentiler sekmesinden eklentiyi sunucuya ekleyelim.
 
-### Eklentiyi Sunucuya Eklenmesi
+### Eklentinin Sunucuya Eklenmesi
 
 1. Tüm sunucuları gör butonuna tıklayıp, açılan ekranda kvm sunucumuzu seçiyoruz.
 
@@ -84,9 +84,11 @@ Sanal Makineler sekmesinde oluşturduğunuz sanal makineleri görüntüleyebilir
 
 ![](https://github.com/belizpehlivan/liman-kvm/blob/main/images/4f.png)
 
-#### Sanal Makine Oluşturma
+####  Sanal Makine Oluşturma
 
 Birlikte yeni bir sanal makine oluşturalım.
+
+![](https://github.com/belizpehlivan/liman-kvm/blob/main/images/5a.png)
 
 Yeni butonuna tıklayıp oluşturmak istediğimiz makine bilgilerini giriyoruz. 
 
@@ -96,16 +98,21 @@ Kvm sunucumuzda makinelerde çalıştırmak istediğiniz işletim sistemi iso do
 
 ![](https://github.com/belizpehlivan/liman-kvm/blob/main/images/4g.png)
 
+![](https://github.com/belizpehlivan/liman-kvm/blob/main/images/4a.png)
+
 İstediğiniz makineye sağ tıklayıp menüdeki seçeneklerle makineyi başlatabilir, kapatabilir ve benzeri işlemleri yapabilirsiniz.
 
 ![](https://github.com/belizpehlivan/liman-kvm/blob/main/images/4b.png)
 
+Makine ismine tıkladığınızda cpu bilgileri, disk boyutu, hafıza ve port bilgilerine ulaşabilir ve düzenleyebilirsiniz.
 
+![](https://github.com/belizpehlivan/liman-kvm/blob/main/images/4c.png)
 
-![](https://github.com/belizpehlivan/liman-kvm/blob/main/images/4e.png)
+#### Varolan Sanal Makineden Kopya Oluşturma 
 
+Master Image Oluştur butonuna tıklayıp, ilgili alanlara kopyalamak istediğiniz draft makinenin ismini ve oluşturulacak makineye vermek istediğiniz ismi giriniz. Master Image'a verdiğiniz isim daha önce belirtildiği gibi hem makine ismi hem de oluşturulacak diskin ismi olacak. 
 
-
+Draft makinede herhangi bir değişiklik yapılmayacaktır, sadece klonlama işlemi için makine kapatılır. İşlemin bitince tabloda yeni makinenizi görebilirsiniz. 
 
 ![](https://github.com/belizpehlivan/liman-kvm/blob/main/images/4k.png)
 
@@ -119,22 +126,28 @@ Kvm sunucumuzda makinelerde çalıştırmak istediğiniz işletim sistemi iso do
 ![](https://github.com/belizpehlivan/liman-kvm/blob/main/images/3a.png)
 
 
+### Disk Görüntüleri
+
+Sanal makine oluşturulurken sanal sabit disk sürücüsü oluşturulur, bu disk görüntülerini de qcow2 dosya formatında tutuyoruz. Makine silindiğinde ona ait disk görüntüsü de silinir.
+
+![](https://github.com/belizpehlivan/liman-kvm/blob/main/images/6b.png)
 
 
-![](https://github.com/belizpehlivan/liman-kvm/blob/main/images/4a.png)
+### Iso Dosyaları
+
+
+![](https://github.com/belizpehlivan/liman-kvm/blob/main/images/6a.png)
 
 
 
-![](https://github.com/belizpehlivan/liman-kvm/blob/main/images/4c.png)
 
 ![](https://github.com/belizpehlivan/liman-kvm/blob/main/images/4d.png)
 
-![](https://github.com/belizpehlivan/liman-kvm/blob/main/images/5a.png)
+
 
 ![](https://github.com/belizpehlivan/liman-kvm/blob/main/images/5b.png)
 
 ![](https://github.com/belizpehlivan/liman-kvm/blob/main/images/5c.png)
 
-![](https://github.com/belizpehlivan/liman-kvm/blob/main/images/6a.png)
 
-![](https://github.com/belizpehlivan/liman-kvm/blob/main/images/6b.png)
+
