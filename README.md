@@ -5,7 +5,7 @@ Liman-KVM eklentisi,
 - Eklenti ile yeni sanal makine oluşturabilir, makine ayarlarını düzenleyebilir ve yönetebilirsiniz.
 - Etki alanınız ile bağlantı kurup, kullanıcılara sanal masaüstü atayabilirsiniz. 
 
->**KVM**, Linux tabanlı sistemler için geliştirilmiş bir sanallaştırma altyapısıdır. 
+>**KVM(Kernel-based Virtual Machine)**, Linux tabanlı sistemler için geliştirilmiş bir sanallaştırma altyapısıdır. 
 
 >**Sanal Masaüstü Altyapısı (Virtual Desktop Infrastructure)**, Masaüstü ortamları merkezi bir sunucuda barındırılır ve yönetilir. Makinede bulunan verilere ve uygulamalara ağ üzerinden kullanıcılara temin edilir. Böylelikle farklı yerlerde veya farklı zamanlarda masaüstlerine erişim sağlanabilir.
 
