@@ -1,18 +1,24 @@
 # LIMAN-KVM
 
-- KVM, Linux tabanlı sistemler için geliştirilmiş bir sanallaştırma altyapısıdır. 
-- Liman-KVM eklentisi oluşturulan sanallaştırılmış ortamı yönetme imkanı sunar. 
+KVM, Linux tabanlı sistemler için geliştirilmiş bir sanallaştırma altyapısıdır. 
 
-Öncelikle makinemize kvm kurulumu yapmalıyız.
+Liman-KVM eklentisi,
+- Masaüstü sanallaştırma ortamını yönetme imkanı sunar.
+- Eklenti ile yeni sanal makine oluşturabilir, makine ayarlarını düzenleyebilir ve yönetebilirsiniz.
+- Etki alanınız ile bağlantı kurup, kullanıcılara sanal masaüstü atayabilirsiniz. 
+
+## KVM Kurulumu
+Öncelikle bilgisayarımıza KVM kurulumu yapmalıyız.
 
 KVM kullanabilmemiz için sanallaştırma teknolojisini destekleyen Intel(Vtx) üzerinde Linux çekirdeği çalıştıran bir x86 makinesine veya AMD-V teknolojisine sahip işlemciye ihtiyacımız var.
 
-Bilgisayarımızın sanallaştırmayı destekleyip desteklemediğini bu [link](https://www.cyberciti.biz/faq/linux-xen-vmware-kvm-intel-vt-amd-v-support/)üzerinden yardım alarak öğrenebilirsiniz.
+Bilgisayarımızın sanallaştırmayı destekleyip desteklemediğini bu [link](https://www.cyberciti.biz/faq/linux-xen-vmware-kvm-intel-vt-amd-v-support/) üzerinden yardım alarak öğrenebilirsiniz.
 
 Ben Debian işletim sistemine sahip bir bilgisayar üzerinde kurulum yaptım. Kurulum için [linkteki](https://www.server-world.info/en/note?os=Debian_10&p=kvm&f=1) adımları takip ederek KVM kurulumunu yapabilirsiniz.
 
-Kurulumu yaptıktan sonra  masaüstü sanallaştırma 
-
+Kurulumu yaptıktan sonra 
+...
+[link](https://github.com/StarBuckR/authpy) üzerinden kodu kvm kurulu makinenize indirdikten sonra, açıklamalarda bulunan adımları /path/to/authpy içinde root kullanıcısında tamamlamanız gerekmektedir.
 
 
 1. Liman-Kvm Eklentisi Kurulumu
