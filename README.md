@@ -16,7 +16,7 @@ Liman-KVM eklentisi,
 3. Liman-Kvm Kullanımı
    - Sanal Makineler 
       Sanal Makine Oluşturma
-      Varolan Sanal Makineden Kopya Oluşturma 
+      Varolan Sanal Makineden Klonlama
    - Disk Görüntüleri 
    - Iso Dosyaları
    - VDI Atama
@@ -140,9 +140,8 @@ Makine ismine tıkladığınızda cpu bilgileri, disk boyutu, hafıza ve port bi
 
 ![](https://github.com/belizpehlivan/liman-kvm/blob/main/images/4c.png)
 
-#### Varolan Sanal Makineden Kopya Oluşturma 
-
-Master Image Oluştur butonuna tıklayıp, ilgili alanlara kopyalamak istediğiniz draft makinenin ismini ve oluşturulacak makineye vermek istediğiniz ismi giriniz. Master Image'a verdiğiniz isim daha önce belirtildiği gibi hem makine ismi hem de oluşturulacak diskin ismi olacak. 
+#### Varolan Sanal Makineyi Klonlama
+Master Image Oluştur butonuna tıklayıp, ilgili alanlara klonlamak istediğiniz draft makinenin ismini ve oluşturulacak makineye vermek istediğiniz ismi giriniz. Master Image'a verdiğiniz isim daha önce belirtildiği gibi hem makine ismi hem de oluşturulacak diskin ismi olacak. 
 
 Draft makinede herhangi bir değişiklik yapılmayacaktır, sadece klonlama işlemi için makine kapatılır. İşlem bitince tabloda yeni makineyi görebiliriz.
 
