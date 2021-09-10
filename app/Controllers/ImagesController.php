@@ -13,10 +13,15 @@ class ImagesController
         foreach($output as &$line){
             $line = preg_replace("/ {2,}/", " ",  $line);
             $line = explode(" ",  $line);
-            $data[]=[
+            $filepath = $line[1];
+            $isExist = Command::runSudo("test -e $filepath && echo 'Found' || echo 'Not found'");
+            if($isExist == 'Found')
+            {
+                $data[]=[
                 "name" => $line[0],
                 "path" => $line[1],
-            ];
+                ];
+            }
         }
         return view('table', [
             "value" => $data,
