@@ -1,6 +1,6 @@
 # LIMAN-KVM
 
-KVM, Linux tabanlı sistemler için geliştirilmiş bir sanallaştırma altyapısıdır. 
+>KVM, Linux tabanlı sistemler için geliştirilmiş bir sanallaştırma altyapısıdır. 
 
 Liman-KVM eklentisi,
 - Masaüstü sanallaştırma ortamını yönetme imkanı sunar.
